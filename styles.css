@@ -63,6 +63,7 @@ footer {
     background: rgba(0, 0, 0, 0.5);
     width: 100%;
     position: relative; /* Ensure positioning context for the image */
+    z-index: 2; /* Ensure footer text is above the image */
 }
 
 .footer-image {
@@ -71,5 +72,5 @@ footer {
     right: 0;
     max-width: 400px; /* Adjust size as needed */
     margin: 10px; /* Adjust margin as needed */
-    z-index: 1; /* Ensure it sits on top of the background */
+    z-index: 1; /* Ensure it sits behind the footer text */
 }
