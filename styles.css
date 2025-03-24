@@ -30,14 +30,11 @@ nav {
 }
 
 nav a {
-    color: #fff;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    font-size: 1rem;
+    /* Removed styles for nav links */
 }
 
 nav a:hover {
-    background-color: #555;
+    /* Removed styles for nav link hover */
 }
 
 main {
@@ -74,4 +71,3 @@ footer {
     margin: 10px; /* Adjust margin as needed */
     z-index: 1; /* Ensure it sits on top of the background */
 }
-
