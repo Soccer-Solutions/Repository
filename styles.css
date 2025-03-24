@@ -3,7 +3,7 @@ body {
     margin: 0;
     padding: 0;
     background: url('Background 1.png') no-repeat center center fixed;
-    background-size: 80%; /* Decreased size to make it clearer */
+    background-size: 50%; /* Decreased size to make it clearer */
     color: #fff;
 }
 
