@@ -3,13 +3,14 @@ body {
     margin: 0;
     padding: 0;
     background: url('Background 1.png') no-repeat center center fixed;
-    background-size: cover;
+    background-size: 80%; /* Decreased size to make it clearer */
     color: #fff;
 }
 
 header {
     text-align: center;
     padding: 2rem;
+    background: rgba(0, 0, 0, 0.5);
 }
 
 header h1 {
@@ -25,9 +26,9 @@ nav {
     display: flex;
     justify-content: flex-end;
     padding: 1rem;
+    background: rgba(0, 0, 0, 0.5);
 }
 
-/* Removed styles for Home, Login, Social, The Offerings, Lifelong Value buttons */
 nav a {
     color: #fff;
     padding: 0.5rem 1rem;
@@ -42,6 +43,7 @@ nav a:hover {
 main {
     text-align: center;
     padding: 2rem;
+    background: rgba(0, 0, 0, 0.5);
 }
 
 main h2 {
@@ -57,7 +59,7 @@ main p {
 footer {
     text-align: center;
     padding: 1rem;
-    background: rgba(0, 0, 0, 0.5); /* This line adds the shadow effect */
+    background: rgba(0, 0, 0, 0.5);
     position: fixed;
     width: 100%;
     bottom: 0;
