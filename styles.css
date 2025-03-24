@@ -63,4 +63,15 @@ footer {
     position: fixed;
     width: 100%;
     bottom: 0;
+    position: relative; /* Ensure positioning context for the image */
 }
+
+.footer-image {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    max-width: 200px; /* Adjust size as needed */
+    margin: 10px; /* Adjust margin as needed */
+    z-index: 1; /* Ensure it sits on top of the background */
+}
+
