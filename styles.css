@@ -28,15 +28,9 @@ nav {
 }
 
 /* Removed styles for Home, Login, Social, The Offerings, Lifelong Value buttons */
+/* Removed navigation buttons */
 nav a {
-    color: #fff;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    font-size: 1rem;
-}
-
-nav a:hover {
-    background-color: #555;
+    display: none;
 }
 
 main {
@@ -62,3 +56,4 @@ footer {
     width: 100%;
     bottom: 0;
 }
+
