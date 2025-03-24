@@ -27,6 +27,7 @@ nav {
     padding: 1rem;
 }
 
+/* Removed styles for Home, Login, Social, The Offerings, Lifelong Value buttons */
 nav a {
     color: #fff;
     padding: 0.5rem 1rem;
