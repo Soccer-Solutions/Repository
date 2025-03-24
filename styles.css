@@ -5,6 +5,9 @@ body {
     background: url('Background 1.png') no-repeat center center fixed;
     background-size: cover;
     color: #fff;
+    min-height: 100vh; /* Ensure body takes full height */
+    display: flex;
+    flex-direction: column;
 }
 
 header {
@@ -40,6 +43,7 @@ nav a:hover {
 main {
     text-align: center;
     padding: 2rem;
+    flex: 1; /* Allow main content to grow and take available space */
     /* Removed background overlay */
 }
 
@@ -57,9 +61,7 @@ footer {
     text-align: center;
     padding: 1rem;
     background: rgba(0, 0, 0, 0.5);
-    position: fixed;
     width: 100%;
-    bottom: 0;
     position: relative; /* Ensure positioning context for the image */
 }
 
@@ -67,7 +69,7 @@ footer {
     position: absolute;
     bottom: 0;
     right: 0;
-    max-width: 200px; /* Adjust size as needed */
+    max-width: 400px; /* Adjust size as needed */
     margin: 10px; /* Adjust margin as needed */
     z-index: 1; /* Ensure it sits on top of the background */
 }
