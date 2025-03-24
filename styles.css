@@ -72,5 +72,6 @@ footer {
     right: 0;
     max-width: 400px; /* Adjust size as needed */
     margin: 10px; /* Adjust margin as needed */
-    z-index: 1; /* Ensure it sits behind the footer */
+    z-index: -1; /* Ensure it sits behind the footer */
 }
+
