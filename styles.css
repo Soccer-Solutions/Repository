@@ -95,7 +95,7 @@ footer {
 }
 
 .neon-text {
-    font-size: 3rem;
+    font-size: 1rem;
     color: #39ff14; /* Neon green */
     text-shadow: 0 0 5px #39ff14, 0 0 10px #39ff14, 0 0 20px #39ff14, 0 0 30px #39ff14;
     font-weight: bold;
