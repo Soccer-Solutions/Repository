@@ -62,8 +62,9 @@ footer {
     padding: 1rem;
     background: rgba(0, 0, 0, 0.5);
     width: 100%;
-    position: relative; /* Ensure positioning context for the image */
-    z-index: 10; /* Ensure footer is above the image */
+    position: relative; /* Creates a stacking context */
+    z-index: 10; /* Ensure footer is above other elements */
+    overflow: hidden; /* Ensures elements with lower z-index don't bleed through */
 }
 
 .footer-image {
@@ -74,4 +75,3 @@ footer {
     margin: 10px; /* Adjust margin as needed */
     z-index: -1; /* Ensure it sits behind the footer */
 }
-
