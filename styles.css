@@ -64,7 +64,6 @@ footer {
     width: 100%;
     position: relative; /* Creates a stacking context */
     z-index: 10; /* Ensure footer is above other elements */
-    overflow: hidden; /* Ensures elements with lower z-index don't bleed through */
 }
 
 .footer-image {
