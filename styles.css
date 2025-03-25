@@ -62,7 +62,7 @@ footer {
     padding: 1rem;
     position: relative; /* Creates a stacking context */
     width: 100%;
-    overflow: hidden; /* Ensures elements with lower z-index don't bleed through */
+    z-index:  10;
 }
 
 .footer-image {
@@ -71,5 +71,5 @@ footer {
     right: 0;
     max-width: 400px; /* Adjust size as needed */
     margin: 10px; /* Adjust margin as needed */
-    z-index: 1; /* Ensure it sits behind the footer overlay */
+    z-index: -1; /* Ensure it sits behind the footer overlay */
 }
