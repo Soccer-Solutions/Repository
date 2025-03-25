@@ -62,7 +62,10 @@ footer {
     padding: 1rem;
     position: relative; /* Creates a stacking context */
     width: 100%;
-    z-index:  10;
+    z-index: 10;
+    display: flex; /* Use flexbox for alignment */
+    flex-direction: column; /* Stack content vertically */
+    align-items: center; /* Center align content horizontally */
 }
 
 .footer-image {
@@ -71,6 +74,8 @@ footer {
     margin: 10px auto; /* Centers the image horizontally */
     max-width: 400px; /* Adjust size as needed */
     z-index: -1; /* Ensure it sits behind the footer overlay */
+    align-self: center; /* Explicitly center the image in the flex container */
+
 }
 
 .neon-button {
