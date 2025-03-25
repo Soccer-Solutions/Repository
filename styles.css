@@ -62,16 +62,13 @@ footer {
     padding: 1rem;
     position: relative; /* Creates a stacking context */
     width: 100%;
-    z-index: 10;
-    display: flex; /* Use flexbox for alignment */
-    flex-direction: column; /* Stack content vertically */
-    align-items: center; /* Center-align the footer content horizontally */
+    z-index:  10;
 }
 
 .footer-image {
-    position: relative; /* Keeps it relative to the footer */
+    position: relative; /* Change to relative for centering */
     display: block; /* Ensures the image behaves like a block element */
-    margin: 10px 0; /* Adds vertical spacing */
+    margin: 10px auto; /* Centers the image horizontally */
     max-width: 400px; /* Adjust size as needed */
     z-index: -1; /* Ensure it sits behind the footer overlay */
 }
