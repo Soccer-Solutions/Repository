@@ -93,10 +93,16 @@ footer {
 }
 
 .neon-text {
-    color: #39ff14; /* Neon green */
-    text-shadow: 0 0 3px #39ff14, 0 0 6px #39ff14, 0 0 9px #39ff14; /* Reduced brightness */
+    color: #39ff14; /* Neon green text */
+    text-shadow: 
+        0 0 5px #39ff14, 
+        0 0 10px #39ff14, 
+        0 0 20px #39ff14, 
+        0 0 30px #39ff14; /* Neon green outline glow */
     font-weight: bold;
     text-align: center;
+    background-color: transparent; /* Ensure no filler behind the text */
+    border: none; /* No border, just the glow effect */
 }
 
 header p.neon-text {
