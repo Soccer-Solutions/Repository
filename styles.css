@@ -95,10 +95,9 @@ footer {
 .neon-text {
     color: #39ff14; /* Green text */
     text-shadow: 
-        0 0 5px #39ff14,  /* Inner glow */
-        0 0 15px #39ff14, /* Outer glow */
-        0 0 20px #39ff14, 
-        0 0 40px #39ff14; /* Neon green glow */
+        0 0 0px #39ff14, /* Inner glow */
+        0 0 20px #39ff14, /* Outer glow */
+        0 0 30px #39ff14; /* Neon green glow */
     font-weight: bold;
     text-align: center;
     background-color: transparent; /* No background */
