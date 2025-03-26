@@ -93,16 +93,15 @@ footer {
 }
 
 .neon-text {
-    color: #39ff14; /* Green text */
-    -webkit-text-stroke: 4px #39ff14; /* Neon green outline */
+    color: transparent; /* Make the text itself transparent */
     text-shadow: 
-        0 0 5px #39ff14, 
+        0 0 2px #39ff14,  /* Inner glow */
+        0 0 5px #39ff14,  /* Outer glow */
         0 0 10px #39ff14, 
-        0 0 20px #39ff14; /* Glowing effect for the outline */
+        0 0 20px #39ff14; /* Neon green glow */
     font-weight: bold;
     text-align: center;
     background-color: transparent; /* No background */
-}
 }
 
 header p.neon-text {
