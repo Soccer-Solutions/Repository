@@ -121,28 +121,3 @@ footer {
 header p.neon-text {
     font-size: 1.5rem; /* Maintain the original size for line 12 */
 }
-
-.treasure-map {
-    position: relative;
-    margin: 2rem auto;
-    max-width: 600px; /* Adjust size as needed */
-    text-align: center;
-}
-
-.treasure-map img {
-    width: 100%;
-    height: auto;
-    border: 2px solid #fff; /* Add a border for better visibility */
-    border-radius: 10px; /* Slightly rounded corners */
-}
-
-.treasure-map .x-mark {
-    position: absolute;
-    top: 50%; /* Adjust to position the "X" */
-    left: 50%; /* Adjust to position the "X" */
-    transform: translate(-50%, -50%);
-    color: red; /* Bright red for the "X" */
-    font-size: 2rem; /* Adjust size as needed */
-    font-weight: bold;
-    text-shadow: 0 0 5px #000; /* Add a subtle shadow for visibility */
-}
