@@ -121,10 +121,3 @@ footer {
 header p.neon-text {
     font-size: 1.5rem; /* Maintain the original size for line 12 */
 }
-.subtext {
-    color: #fff; /* Simple white text */
-    font-size: 1.8rem; /* Adjust size as needed */
-    font-weight: bold;
-    margin: 1rem 0; /* Add spacing around the text */
-    text-align: center;
-}
