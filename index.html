@@ -130,6 +130,21 @@
       cursor: pointer;
       color: var(--text-light);
     }
+    .spots-note{
+  margin: .75rem 0 .25rem;
+  font-weight: 400;              /* not bold */
+  font-size: 1.125rem;           /* ~18px */
+  color: var(--text-light);
+  opacity: .95;
+  background: rgba(0,0,0,.35);   /* subtle pill */
+  border: 1px solid var(--accent);
+  padding: .45rem .9rem;
+  border-radius: .5rem;
+}
+@media (max-width: 768px){
+  .spots-note{ font-size: 1rem; }
+}
+
 
     /* ---------- LEFT TITLE LAYOUT ---------- */
     .split {
@@ -311,6 +326,8 @@
     <h1 style="font-size:3.5rem;font-weight:700;">
       Command the Ball,<br />Command the Game
     </h1>
+    <p class="spots-note">19 Academy Spots Remaining for 2025–2026</p>
+
 
     <!-- 🔽 put the CTA inside hero-content so flex can center it -->
     <a href="https://dot.cards/ess_academy"
