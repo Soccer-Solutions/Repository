@@ -1,22 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ESS Academy – Soccer School in Exeter, CA | All Levels Welcome</title>
-    <link rel="icon" href="favicon_essa.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ESS Academy – Soccer School in Exeter, CA | All Levels Welcome</title>
+  <link rel="icon" href="favicon_essa.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <meta name="description" content="ESS Academy is a soccer school in Exeter, CA. Train up to 6 days a week with our grassroots soccer school. Free 1-week trial. Serving Tulare County youth and competitive athletes.">
+  <meta name="keywords" content="soccer training near me, private soccer coaching in Exeter, soccer trainer Exeter, soccer club, soccer club Exeter, soccer club near me, soccer training Visalia, soccer training Tulare, soccer training Farmersville, soccer training Lindsay, soccer training Woodlake, soccer training Porterville, soccer team, soccer team near me, soccer near me">
+  <link rel="canonical" href="https://essa.soccer/">
 
-    <meta name="description"
-        content="ESS Academy is a soccer school in Exeter, CA. Train up to 6 days a week with our grassroots soccer school. Free 1-week trial. Serving Tulare County youth and competitive athletes.">
-    <meta name="keywords"
-        content="soccer training near me, private soccer coaching in Exeter, soccer trainer Exeter, soccer club, soccer club Exeter, soccer club near me, soccer training Visalia, soccer training Tulare, soccer training Farmersville, soccer training Lindsay, soccer training Woodlake, soccer training Porterville, soccer team, soccer team near me, soccer near me">
-    <link rel="canonical" href="https://essa.soccer/">
-
-    <!---- Structured-data for Google rich results -->
-    <script type="application/ld+json">
+  <!---- Structured-data for Google rich results -->
+  <script type="application/ld+json">
   {
     "@context": "https://schema.org/",
     "@type": "Product",
@@ -54,1350 +49,467 @@
    }
   }
   </script>
-
-    <style>
-        :root {
-            --accent: #02b064;
-            --bg-dark: #0d0d0d;
-            --bg-darker: #000;
-            --text-light: #f5f5f5;
-            --text-grey: #6e6e6e;
-            --max-w: 1400px;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: var(--bg-dark);
-            color: var(--text-light);
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        /* ---------- HEADER ---------- */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 2rem;
-            z-index: 999;
-            background: rgba(0, 0, 0, .35);
-            backdrop-filter: blur(6px);
-        }
-
-        .logo {
-            font-size: 1.4rem;
-            font-weight: 700;
-            letter-spacing: .5px;
-            color: var(--accent);
-        }
-
-        .menu-btn {
-            font-size: .9rem;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        /* ---------- SECTION WRAPPER ---------- */
-        section {
-            width: 100%;
-            overflow: hidden;
-        }
-
-        .inner {
-            width: 90%;
-            max-width: var(--max-w);
-            margin: 0 auto;
-        }
-
-        /* ---------- SCROLL-IMAGE-SEQUENCE SECTION ---------- */
-        .video-scroll-wrapper {
-            position: relative;
-            height: 600vh;
-            background: #000;
-        }
-
-        .video-sticky {
-            position: sticky;
-            top: 0;
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Canvas fills viewport */
-        #emerald-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        /* ---- IDLE-STATE BREATHE on canvas ---- */
-        #emerald-canvas.idle {
-            animation: emeraldBreathe 3.5s ease-in-out infinite;
-        }
-
-        @keyframes emeraldBreathe {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.04);
-            }
-        }
-
-        /* ---- SHIMMER OVERLAY ---- */
-        .emerald-shimmer {
-            position: absolute;
-            inset: 0;
-            z-index: 1;
-            pointer-events: none;
-            overflow: hidden;
-            opacity: 0;
-            transition: opacity .8s ease;
-        }
-
-        .emerald-shimmer.active {
-            opacity: 1;
-        }
-
-        .emerald-shimmer::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(120deg,
-                    transparent 30%,
-                    rgba(255, 255, 255, .08) 38%,
-                    rgba(255, 255, 255, .14) 42%,
-                    rgba(255, 255, 255, .08) 46%,
-                    transparent 54%);
-            animation: shimmerSweep 4s ease-in-out infinite;
-        }
-
-        @keyframes shimmerSweep {
-            0% {
-                transform: translateX(-70%) rotate(25deg);
-            }
-
-            100% {
-                transform: translateX(70%) rotate(25deg);
-            }
-        }
-
-        /* Radial emerald glow behind the gem */
-        .emerald-glow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 70vmin;
-            height: 70vmin;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(2, 176, 100, .25) 0%, rgba(0, 255, 80, .08) 40%, transparent 70%);
-            opacity: 0;
-            pointer-events: none;
-            z-index: 2;
-            filter: blur(40px);
-            transition: opacity .8s ease;
-        }
-
-        /* Idle glow pulse */
-        .emerald-glow.idle {
-            opacity: 0.35;
-            animation: glowPulse 3s ease-in-out infinite;
-        }
-
-        @keyframes glowPulse {
-
-            0%,
-            100% {
-                opacity: 0.3;
-                transform: translate(-50%, -50%) scale(0.92);
-            }
-
-            50% {
-                opacity: 0.65;
-                transform: translate(-50%, -50%) scale(1.1);
-            }
-        }
-
-        /* Floating particle layer */
-        .emerald-particles {
-            position: absolute;
-            inset: 0;
-            z-index: 3;
-            pointer-events: none;
-            overflow: hidden;
-        }
-
-        .emerald-particles .p {
-            position: absolute;
-            width: 3px;
-            height: 3px;
-            border-radius: 50%;
-            background: rgba(2, 176, 100, .6);
-            box-shadow: 0 0 6px rgba(0, 255, 80, .5);
-            opacity: 0;
-            animation: floatParticle 6s ease-in-out infinite;
-        }
-
-        .emerald-particles .p:nth-child(1) {
-            left: 18%;
-            top: 60%;
-            animation-delay: 0s;
-            animation-duration: 5s;
-        }
-
-        .emerald-particles .p:nth-child(2) {
-            left: 75%;
-            top: 45%;
-            animation-delay: .8s;
-            animation-duration: 7s;
-        }
-
-        .emerald-particles .p:nth-child(3) {
-            left: 40%;
-            top: 70%;
-            animation-delay: 1.5s;
-            animation-duration: 6s;
-        }
-
-        .emerald-particles .p:nth-child(4) {
-            left: 60%;
-            top: 30%;
-            animation-delay: 2s;
-            animation-duration: 5.5s;
-        }
-
-        .emerald-particles .p:nth-child(5) {
-            left: 25%;
-            top: 40%;
-            animation-delay: 3s;
-            animation-duration: 6.5s;
-        }
-
-        .emerald-particles .p:nth-child(6) {
-            left: 80%;
-            top: 65%;
-            animation-delay: 1s;
-            animation-duration: 7.5s;
-        }
-
-        .emerald-particles .p:nth-child(7) {
-            left: 50%;
-            top: 80%;
-            animation-delay: 2.5s;
-            animation-duration: 5s;
-        }
-
-        .emerald-particles .p:nth-child(8) {
-            left: 35%;
-            top: 25%;
-            animation-delay: 4s;
-            animation-duration: 6s;
-        }
-
-        .emerald-particles .p:nth-child(9) {
-            left: 70%;
-            top: 75%;
-            animation-delay: 3.5s;
-            animation-duration: 7s;
-        }
-
-        .emerald-particles .p:nth-child(10) {
-            left: 15%;
-            top: 50%;
-            animation-delay: 0.5s;
-            animation-duration: 8s;
-        }
-
-        .emerald-particles .p:nth-child(11) {
-            left: 55%;
-            top: 20%;
-            animation-delay: 1.8s;
-            animation-duration: 5.5s;
-        }
-
-        .emerald-particles .p:nth-child(12) {
-            left: 85%;
-            top: 55%;
-            animation-delay: 2.8s;
-            animation-duration: 6s;
-        }
-
-        @keyframes floatParticle {
-            0% {
-                transform: translateY(0) scale(1);
-                opacity: 0;
-            }
-
-            15% {
-                opacity: .7;
-            }
-
-            50% {
-                transform: translateY(-60px) scale(1.5);
-                opacity: .4;
-            }
-
-            85% {
-                opacity: .1;
-            }
-
-            100% {
-                transform: translateY(-120px) scale(.5);
-                opacity: 0;
-            }
-        }
-
-        /* Text overlay container */
-        .video-text-overlay {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 5;
-            pointer-events: none;
-        }
-
-        /* Headline wrapper */
-        .video-headline {
-            font-family: 'Poppins', sans-serif;
-            font-size: clamp(2.5rem, 7vw, 6rem);
-            font-weight: 700;
-            color: #fff;
-            text-align: center;
-            text-transform: uppercase;
-            letter-spacing: .06em;
-            line-height: 1.15;
-            opacity: 0;
-            transition: none;
-            filter: drop-shadow(0 2px 12px rgba(0, 0, 0, .7));
-        }
-
-        .video-headline .line {
-            display: block;
-        }
-
-        /* Individual character spans */
-        .video-headline .char {
-            display: inline-block;
-            opacity: 0;
-            transform: translateY(60px) scale(0.7);
-            filter: blur(8px);
-            transition: none;
-            /* driven by JS */
-            text-shadow:
-                0 0 30px rgba(2, 176, 100, .6),
-                0 0 60px rgba(2, 176, 100, .3),
-                0 0 120px rgba(2, 176, 100, .15);
-        }
-
-        .video-headline .char.space {
-            width: .3em;
-        }
-
-        /* Shimmer on visible text */
-        .video-headline.shimmer-active .char {
-            background: linear-gradient(90deg,
-                    #fff 0%, #fff 35%,
-                    #00ff80 50%,
-                    #fff 65%, #fff 100%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: shimmer 3.5s linear infinite;
-        }
-
-        @keyframes shimmer {
-            0% {
-                background-position: -200% center;
-            }
-
-            100% {
-                background-position: 200% center;
-            }
-        }
-
-        /* Scroll-down prompt */
-        .video-scroll-hint {
-            position: absolute;
-            bottom: 36px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 6;
-            text-align: center;
-            pointer-events: none;
-            opacity: 1;
-            transition: opacity .4s;
-        }
-
-        .video-scroll-hint span {
-            display: block;
-            font-size: .8rem;
-            color: rgba(255, 255, 255, .5);
-            letter-spacing: .5px;
-            margin-bottom: .3rem;
-        }
-
-        .video-scroll-hint .arrow {
-            font-size: 1.6rem;
-            color: var(--text-light);
-            animation: bounceArrow 2s ease-in-out infinite;
-        }
-
-        @keyframes bounceArrow {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(8px);
-            }
-        }
-
-        /* Loading overlay */
-        .seq-loader {
-            position: absolute;
-            inset: 0;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: #000;
-            transition: opacity .6s ease;
-        }
-
-        .seq-loader.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .seq-loader-ring {
-            width: 48px;
-            height: 48px;
-            border: 3px solid rgba(2, 176, 100, .2);
-            border-top-color: var(--accent);
-            border-radius: 50%;
-            animation: spin .8s linear infinite;
-        }
-
-        .seq-loader span {
-            margin-top: 1rem;
-            font-size: .8rem;
-            color: rgba(255, 255, 255, .4);
-            letter-spacing: 1px;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* ---------- HERO ---------- */
-        .hero {
-            height: 100vh;
-            position: relative;
-            z-index: 2;
-            /* ⬅️ make sure it's on top */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: url('website cover gustavo.png') center/cover no-repeat;
-            color: white;
-            /* ensure text is white */
-        }
-
-        .hero::after {
-            /* dark overlay */
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(0, 0, 0, .55);
-        }
-
-        .hero-content {
-            /* existing styles … */
-            z-index: 3;
-            display: flex;
-            flex-direction: column;
-            /* stack headline + button */
-            align-items: center;
-            /* center horizontally */
-        }
-
-        .scroll-down {
-            position: absolute;
-            /* ⬅️  put it back in absolute positioning  */
-            z-index: 3;
-            /* ⬅️  keep it above the background image   */
-            color: white;
-            /* ensure arrow is visible */
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 2rem;
-            cursor: pointer;
-            color: var(--text-light);
-        }
-
-        .spots-note {
-            margin: .75rem 0 .25rem;
-            font-weight: 400;
-            /* not bold */
-            font-size: 1.25rem;
-            /* ~18px */
-            color: var(--text-light);
-            opacity: .95;
-            background: rgba(0, 0, 0, .35);
-            /* subtle pill */
-            border: 1px solid var(--accent);
-            padding: .45rem .9rem;
-            border-radius: .5rem;
-        }
-
-        @media (max-width: 768px) {
-            .spots-note {
-                font-size: 1rem;
-            }
-        }
-
-
-        /* ---------- LEFT TITLE LAYOUT ---------- */
-        .split {
-            display: grid;
-            grid-template-columns: minmax(180px, 220px) 1fr;
-            gap: 3rem;
-            align-items: start;
-            padding: 8rem 0 6rem;
-        }
-
-        .slash-title {
-            font-size: 1.1rem;
-            /* Smaller font size */
-            font-weight: 600;
-            color: var(--text-light);
-            position: relative;
-        }
-
-        .slash-title::before {
-            content: '\\';
-            color: var(--accent);
-            margin-right: .3rem;
-        }
-
-        /* ---------- WHO ARE WE IMAGE ---------- */
-        .img-right {
-            width: 100%;
-            max-width: 1000px;
-            height: auto;
-            object-fit: cover;
-            display: block;
-            margin: 2rem auto 0 auto;
-            border-radius: 6px;
-        }
-
-        @media (min-width: 901px) {
-            .img-right {
-                max-width: 1500px;
-                /* Prevent it from growing wider */
-                margin: 2rem auto 0 auto;
-                /* center image on desktop */
-            }
-        }
-
-        @media (min-width: 901px) {
-            .img-right {
-                transform: translateX(+28px);
-                /* Who Am I image */
-            }
-
-            .cert-img {
-                transform: translateX(-155px);
-                /* Certification image */
-            }
-        }
-
-        /* ---------- FRAMEWORK ---------- */
-        .framework-item {
-            margin-bottom: 3rem;
-        }
-
-        .framework-item h4 {
-            font-size: 1rem;
-            letter-spacing: .5px;
-            margin-bottom: .6rem;
-            color: var(--text-light);
-        }
-
-        .framework-item p {
-            color: var(--text-grey);
-            font-size: 1rem;
-            line-height: 1.6;
-        }
-
-
-        .schedule-list {
-            list-style: none;
-        }
-
-        .schedule-list li {
-            display: flex;
-            justify-content: space-between;
-            padding: 1.1rem 0;
-            border-bottom: 1px solid #222;
-        }
-
-        .schedule-list span {
-            font-size: .9rem;
-        }
-
-        /* ---------- COACHES ---------- */
-        .coach-wrap {
-            display: grid;
-            grid-template-columns: 1fr 420px;
-            gap: 3rem;
-            padding: 6rem 0;
-        }
-
-        .coach-img {
-            width: 100%;
-            height: auto;
-        }
-
-        .tabs {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .tab {
-            padding: .4rem 1.2rem;
-            font-size: .75rem;
-            font-weight: 600;
-            cursor: pointer;
-            border: 2px solid var(--text-light);
-            background: transparent;
-            color: var(--text-light);
-        }
-
-        .tab.active {
-            background: var(--text-light);
-            color: var(--bg-dark);
-        }
-
-        /* ---------- REVIEWS ---------- */
-        #reviews {
-            padding: 4rem 0;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            text-align: center;
-        }
-
-        #reviews h2 {
-            font-size: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .review-gallery {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 2.5rem;
-            margin-top: 3rem;
-        }
-
-        .review-gallery img {
-            width: 100%;
-            max-width: 380px;
-            /* full size on desktop */
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
-        }
-
-        @media (min-width: 900px) {
-            .review-gallery {
-                gap: 1rem;
-                /* Reduced gap to allow wider cards */
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-
-            .review-gallery img {
-                width: auto;
-                max-width: 55%;
-                flex: 1 1 48%;
-            }
-        }
-
-        /* ---------- FOOTER ---------- */
-        footer {
-            padding: 3rem 2rem;
-            text-align: center;
-            font-size: .85rem;
-            background: var(--bg-darker);
-            color: var(--text-grey);
-        }
-
-        @media (max-width: 900px) {
-            .split {
-                grid-template-columns: 1fr;
-            }
-
-            .slash-title {
-                margin-bottom: 1.5rem;
-            }
-
-            .coach-wrap {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* ---------- BUTTON---------- */
-        .glow-button {
-            display: inline-block;
-            padding: 0.75rem 1.75rem;
-            background-color: black;
-            color: #00ff44;
-            border: 2px solid #00ff44;
-            font-weight: bold;
-            font-size: 1rem;
-            text-transform: uppercase;
-            text-decoration: none;
-            border-radius: 8px;
-            box-shadow: 0 0 20px #00ff44;
-            transition: box-shadow 0.3s ease, background-color 0.3s ease;
-        }
-
-        .glow-button:hover {
-            background-color: #00ff44;
-            color: black;
-            box-shadow: 0 0 30px #00ff44, 0 0 60px #00ff44;
-        }
-
-        @media (max-width: 768px) {
-            .hero {
-                height: 90vh;
-                /* Don't shrink too much */
-                background-size: cover;
-                background-position: center;
-                padding: 2rem 1rem;
-                /* Give breathing room */
-            }
-
-            .hero-content h1 {
-                font-size: 2.2rem;
-                line-height: 1.3;
-                margin-bottom: 1.5rem;
-            }
-
-            .glow-button {
-                font-size: 1rem;
-                padding: 0.75rem 1.5rem;
-            }
-
-            .scroll-down {
-                bottom: 20px;
-                font-size: 1.5rem;
-            }
-        }
-    </style>
+  
+  <style>
+    :root {
+      --accent: #02b064;
+      --bg-dark: #0d0d0d;
+      --bg-darker: #000;
+      --text-light: #f5f5f5;
+      --text-grey: #6e6e6e;
+      --max-w: 1400px;
+    }
+    
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-light);
+    }
+    a { color: inherit; text-decoration: none; }
+    
+    /* ---------- HEADER ---------- */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      z-index: 999;
+      background: rgba(0, 0, 0, .35);
+      backdrop-filter: blur(6px);
+    }
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 700;
+      letter-spacing: .5px;
+      color: var(--accent);
+    }
+    .menu-btn { font-size: .9rem; font-weight: 600; cursor: pointer; }
+
+    /* ---------- SECTION WRAPPER ---------- */
+    section { width: 100%; overflow: hidden; }
+    .inner { width: 90%; max-width: var(--max-w); margin: 0 auto; }
+
+    /* ---------- HERO ---------- */
+   .hero {
+      height: 100vh;
+      position: relative;
+      z-index: 2;             /* ⬅️ make sure it's on top */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: url('website cover gustavo.png') center/cover no-repeat;
+      color: white;           /* ensure text is white */
+    }
+    .hero::after { /* dark overlay */
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+    }
+   .hero-content {
+  /* existing styles … */
+  z-index: 3;
+  display: flex;
+  flex-direction: column;   /* stack headline + button */
+  align-items: center;      /* center horizontally */
+}
+    .scroll-down {
+      position: absolute;          /* ⬅️  put it back in absolute positioning  */
+      z-index: 3;                  /* ⬅️  keep it above the background image   */
+      color: white;           /* ensure arrow is visible */
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+      cursor: pointer;
+      color: var(--text-light);
+    }
+    .spots-note{
+  margin: .75rem 0 .25rem;
+  font-weight: 400;              /* not bold */
+  font-size: 1.25rem;           /* ~18px */
+  color: var(--text-light);
+  opacity: .95;
+  background: rgba(0,0,0,.35);   /* subtle pill */
+  border: 1px solid var(--accent);
+  padding: .45rem .9rem;
+  border-radius: .5rem;
+}
+@media (max-width: 768px){
+  .spots-note{ font-size: 1rem; }
+}
+
+    /* ---------- LEFT TITLE LAYOUT ---------- */
+    .split {
+      display: grid;
+      grid-template-columns: minmax(180px, 220px) 1fr;
+      gap: 3rem;
+      align-items: start;
+      padding: 8rem 0 6rem;
+    }
+    .slash-title {
+      font-size: 1.1rem; /* Smaller font size */
+      font-weight: 600;
+      color: var(--text-light);
+      position: relative;
+    }
+    .slash-title::before {
+      content: '\\';
+      color: var(--accent);
+      margin-right: .3rem;
+    }
+    /* ---------- WHO ARE WE IMAGE ---------- */
+    .img-right {
+  width: 100%;
+  max-width: 1000px;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  margin: 2rem auto 0 auto; 
+  border-radius: 6px;
+}
+
+@media (min-width: 901px) {
+  .img-right {
+    max-width: 1500px; /* Prevent it from growing wider */
+    margin: 2rem auto 0 auto; /* center image on desktop */
+  }
+}
+@media (min-width: 901px) {
+  .img-right {
+    transform: translateX(+28px); /* Who Am I image */
+  }
+
+  .cert-img {
+    transform: translateX(-155px); /* Certification image */
+  }
+}
+
+    /* ---------- FRAMEWORK ---------- */
+    .framework-item { margin-bottom: 3rem; }
+    .framework-item h4 {
+      font-size: 1rem;
+      letter-spacing: .5px;
+      margin-bottom: .6rem;
+      color: var(--text-light);
+    }
+    .framework-item p { color: var(--text-grey); font-size: 1rem; line-height: 1.6; }
+
+
+    .schedule-list { list-style: none; }
+    .schedule-list li { display: flex; justify-content: space-between; padding: 1.1rem 0; border-bottom: 1px solid #222; }
+    .schedule-list span { font-size: .9rem; }
+
+    /* ---------- COACHES ---------- */
+    .coach-wrap { display: grid; grid-template-columns: 1fr 420px; gap: 3rem; padding: 6rem 0; }
+    .coach-img { width: 100%; height: auto; }
+    .tabs { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+    .tab { padding: .4rem 1.2rem; font-size: .75rem; font-weight: 600; cursor: pointer; border: 2px solid var(--text-light); background: transparent; color: var(--text-light); }
+    .tab.active { background: var(--text-light); color: var(--bg-dark); }
+    
+    /* ---------- REVIEWS ---------- */
+    #reviews {
+  padding: 4rem 0;
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  text-align: center;
+}
+
+#reviews h2 {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.review-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+  margin-top: 3rem;
+}
+
+.review-gallery img {
+  width: 100%;
+  max-width: 380px;     /* full size on desktop */
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+}
+ @media (min-width: 900px) {
+  .review-gallery {
+    gap: 1rem; /* Reduced gap to allow wider cards */
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .review-gallery img {
+    width: auto;
+    max-width: 55%;
+    flex: 1 1 48%;
+  }
+}
+    /* ---------- FOOTER ---------- */
+    footer { padding: 3rem 2rem; text-align: center; font-size: .85rem; background: var(--bg-darker); color: var(--text-grey); }
+
+    @media (max-width: 900px) {
+      .split { grid-template-columns: 1fr; }
+      .slash-title { margin-bottom: 1.5rem; }
+      .coach-wrap { grid-template-columns: 1fr; }
+    }
+/* ---------- BUTTON---------- */
+    .glow-button {
+  display: inline-block;
+  padding: 0.75rem 1.75rem;
+  background-color: black;
+  color: #00ff44;
+  border: 2px solid #00ff44;
+  font-weight: bold;
+  font-size: 1rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 8px;
+  box-shadow: 0 0 20px #00ff44;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.glow-button:hover {
+  background-color: #00ff44;
+  color: black;
+  box-shadow: 0 0 30px #00ff44, 0 0 60px #00ff44;
+}
+
+  @media (max-width: 768px) {
+  .hero {
+    height: 90vh; /* Don't shrink too much */
+    background-size: cover;
+    background-position: center;
+    padding: 2rem 1rem; /* Give breathing room */
+  }
+
+  .hero-content h1 {
+    font-size: 2.2rem;
+    line-height: 1.3;
+    margin-bottom: 1.5rem;
+  }
+
+  .glow-button {
+    font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+  }
+
+  .scroll-down {
+    bottom: 20px;
+    font-size: 1.5rem;
+  }
+}
+
+
+  </style>
 </head>
-
 <body>
-    <!-- Header -->
-    <header>
-        <div class="logo">ESSA</div>
-        <a href="https://dot.cards/ess_academy" target="_blank" class="menu-btn">[MENU]</a>
-    </header>
+  <!-- Header -->
+  <header>
+    <div class="logo">ESSA</div>
+    <a href="https://dot.cards/ess_academy" target="_blank" class="menu-btn">[MENU]</a>
+  </header>
 
-    <!-- Scroll-Driven Emerald Image-Sequence Section -->
-    <div class="video-scroll-wrapper" id="emerald-scroll">
-        <div class="video-sticky">
-            <canvas id="emerald-canvas" class="idle"></canvas>
+  <!-- Hero -->
+<section class="hero" id="top">
+  <div class="hero-content">
+    <h1 style="font-size:3.5rem;font-weight:700;">
+      Command the Ball,<br />Command the Game
+    </h1>
+    <p class="spots-note">19 Academy Spots Remaining for 2026</p>
 
-            <!-- Shimmer highlight overlay -->
-            <div class="emerald-shimmer" id="emerald-shimmer"></div>
 
-            <!-- Radial glow behind emerald -->
-            <div class="emerald-glow idle" id="emerald-glow"></div>
+    <!-- 🔽 put the CTA inside hero-content so flex can center it -->
+    <a href="https://calendly.com/essa-info/30min"
+   target="_blank"
+   class="glow-button"
+   style="margin-top:1rem;">
+   Schedule Your Free Intro Session
+</a>
+    
+    <a href="https://dot.cards/ess_academy"
+       target="_blank"
+       class="glow-button"
+       style="margin-top:1.5rem;">
+       Get in Touch
+    </a>
+  </div>
 
-            <!-- Floating particles -->
-            <div class="emerald-particles" id="emerald-particles">
-                <div class="p"></div>
-                <div class="p"></div>
-                <div class="p"></div>
-                <div class="p"></div>
-                <div class="p"></div>
-                <div class="p"></div>
-                <div class="p"></div>
-                <div class="p"></div>
-                <div class="p"></div>
-                <div class="p"></div>
-                <div class="p"></div>
-                <div class="p"></div>
-            </div>
+  <!-- keep the scroll arrow where it is -->
+  <div class="scroll-down"
+       onclick="document.getElementById('who').scrollIntoView({behavior:'smooth'});">
+       &#8595;
+  </div>
+</section>
 
-            <!-- Text overlay with split characters -->
-            <div class="video-text-overlay">
-                <h1 class="video-headline" id="video-headline">
-                    <span class="line" id="line-1"></span>
-                    <span class="line" id="line-2"></span>
-                </h1>
-            </div>
-
-            <div class="video-scroll-hint" id="video-scroll-hint">
-                <span>Scroll to explore</span>
-                <div class="arrow">&#8595;</div>
-            </div>
-
-            <!-- Loading overlay -->
-            <div class="seq-loader" id="seq-loader">
-                <div class="seq-loader-ring"></div>
-                <span>LOADING</span>
-            </div>
-        </div>
+  <!-- Who Am I -->
+  <section id="who">
+    <div class="inner split">
+      <h2 class="slash-title">Get to know ESS Academy</h2>
+      <p>Welcome to <strong>ESS Academy</strong>, a soccer development academy that believes everyone carries a hidden '<strong>emerald</strong>' -their unrealized potential- and is dedicated to helping them unearth it and realize their potential through <strong><em>measurable, data-driven growth.</em></strong>  The academy cultivates a culture that marries <em>technical mastery</em> with <em>mental resilience</em>, ensuring players not only survive but excel under elite‑level stress.  ESS Academy brings Barça‑inspired methodology and MLS Next‑proven results to athletes committed to a <strong>genuine, lasting transformation.</strong></p>
     </div>
-
-    <!-- Hero -->
-    <section class="hero" id="top">
-        <div class="hero-content">
-            <h1 style="font-size:3.5rem;font-weight:700;">
-                Command the Ball,<br />Command the Game
-            </h1>
-            <p class="spots-note">19 Academy Spots Remaining for 2026</p>
-
-
-            <!-- 🔽 put the CTA inside hero-content so flex can center it -->
-            <a href="https://calendly.com/essa-info/30min" target="_blank" class="glow-button" style="margin-top:1rem;">
-                Schedule Your Free Intro Session
-            </a>
-
-            <a href="https://dot.cards/ess_academy" target="_blank" class="glow-button" style="margin-top:1.5rem;">
-                Get in Touch
-            </a>
-        </div>
-
-        <!-- keep the scroll arrow where it is -->
-        <div class="scroll-down" onclick="document.getElementById('who').scrollIntoView({behavior:'smooth'});">
-            &#8595;
-        </div>
-    </section>
-
-    <!-- Who Am I -->
-    <section id="who">
-        <div class="inner split">
-            <h2 class="slash-title">Get to know ESS Academy</h2>
-            <p>Welcome to <strong>ESS Academy</strong>, a soccer development academy that believes everyone carries a
-                hidden
-                '<strong>emerald</strong>' -their unrealized potential- and is dedicated to helping them unearth it and
-                realize
-                their potential through <strong><em>measurable, data-driven growth.</em></strong> The academy cultivates
-                a
-                culture that marries <em>technical mastery</em> with <em>mental resilience</em>, ensuring players not
-                only
-                survive but excel under elite‑level stress. ESS Academy brings Barça‑inspired methodology and MLS
-                Next‑proven
-                results to athletes committed to a <strong>genuine, lasting transformation.</strong></p>
-        </div>
-        <img src="Who are we image.png" alt="Player training" class="img-right" />
-    </section>
-
-    <!-- Philosophy -->
-    <section id="philosophy">
-        <div class="inner split">
-            <h2 class="slash-title">Academy Philosophy</h2>
-            <p>At ESS Academy <strong>intelligent repetition</strong> fuels mastery. The academy empowers players with a
-                performance toolbox through <strong>intentional data-driven repetition</strong>, refined through
-                sessions that
-                fuse relentless practice with reflective learning into a unified development arc. Students are coached
-                to be
-                <em>brave</em>, <em>composed</em>, <em>creative</em>, <em>original</em> and <em>unshakable</em> when the
-                stakes
-                are highest.
-            </p>
-        </div>
-    </section>
-
-    <!-- Image Between Philosophy and Affiliations -->
-    <img src="Axel_Francisco.png" alt="Philosophy Visual" class="img-right"
-        style="margin-top: 0; margin-bottom: 3rem;" />
-
-
-    <!-- Logos / Working With Players -->
-    <section id="affiliations" style="padding:4rem 0;">
-        <div class="inner" style="text-align:center;">
-            <h2 class="slash-title" style="margin:auto;">Working With Players From</h2>
-            <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:3rem;margin-top:3rem;opacity:.8;">
-                <!-- 8 placeholder club logos -->
-                <img src="Quakes Badge.png" alt="San Jose Earthquakes" width="150" />
-                <img src="SVU Badge.png" alt="South Valley United" width="150" />
-                <img src="SV Chivas Badge.png" alt="South Valley Chivas" width="150" />
-                <img src="CVP Badge.png" alt="Central Valley Premier" width="150" />
-            </div>
-        </div>
-    </section>
-
-    <!-- Framework -->
-    <section id="framework">
-        <div class="inner split">
-            <h2 class="slash-title">Academy Framework</h2>
-            <div>
-                <div class="framework-item">
-                    <h4>Data-Driven Technical Development</h4>
-                    <p>ESS Academy operates on a measurable, evidence-based training model powered by its
-                        <strong>proprietary data
-                            system.</strong> Sessions target quantifiable standards aligned directly to ESS Academy's
-                        official
-                        certification metrics. Student training is guided by a performance dashboard available 24/7,
-                        supported by
-                        monthly performance reports that keep families informed while tracking performance across every
-                        core
-                        competency. <strong>This is not “drill culture.”</strong> This is precise, data-driven
-                        development for
-                        families serious about measurable improvement.
-                    </p>
-                </div>
-                <div class="framework-item">
-                    <h4>Certification-Focused Training</h4>
-                    <p>Every athlete’s training is focused toward the technical, physical, and cognitive benchmarks
-                        required to
-                        progress through ESS Academy’s certification program. The training calendar is engineered to
-                        build the exact
-                        abilities measured in the certification process. <strong>Progress is earned, measured, and
-                            verified.</strong></p>
-                </div>
-                <div class="framework-item">
-                    <h4>Duels (Situational & Limited)</h4>
-                    <p>Duels are used selectively to reinforce composure and situational problem-solving. When
-                        appropriate,
-                        athletes are encouraged to challenge Zachary or other peers to test their execution under
-                        stress.
-                        <strong>While duels are valuable, they are not the core program.</strong>
-                    </p>
-                </div>
-                <div class="framework-item">
-                    <h4>Micro-Scenario Training (Situational & Limited)</h4>
-                    <p>Instead of traditional game-related practices or full team sessions, ESS Academy selectively uses
-                        short,
-                        targeted micro-scenarios designed to <strong>improve a specific measurable skill</strong> when
-                        appropriate.
-                        Every scenario has one purpose: strengthen the metrics that matter for certification success.
-                    </p>
-                </div>
-                <div class="framework-item">
-                    <h4>Small‑Sided Play (Situational & Limited)</h4>
-                    <p>Used sparingly and only when group size allows, small-sided play helps athletes apply technical
-                        gains under
-                        pressure. These sessions are short, intentional, and tied directly to certification elements.
-                        <strong>While
-                            small-sided play is valuable, it is not the core program.</strong>
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services -->
-    <section id="services">
-        <div class="inner split">
-            <h2 class="slash-title">Services</h2>
-            <div>
-                <h3 style="font-size:1.2rem;font-weight:600;margin-bottom:1rem;">Academy Certification Program</h3>
-                <img src="certification program.png" alt="Certificate" class="img-right cert-img" />
-                <img src="Certification Program 2.png" alt="Certificate" class="img-right cert-img" />
-            </div>
-        </div>
-    </section>
-
-    <!-- Schedule -->
-    <section id="schedule">
-        <div class="inner split">
-            <h2 class="slash-title">Schedule</h2>
-            <ul class="schedule-list">
-                <li><span>Monday</span> <span> | 3:30PM – 4:30PM | 4:30PM - 5:30PM | &nbsp;</span></li>
-                <li><span>Tuesday</span> <span> | 3:30PM – 4:30PM | 4:30PM - 5:30PM | 5:30PM - 6:30PM | &nbsp;</span>
-                </li>
-                <li><span>Wednesday</span> <span> | 1:30PM - 2:30PM | 2:30PM - 3:30PM | 3:30PM - 4:30PM | 4:30PM -
-                        5:30PM |
-                        5:30PM - 6:30PM | &nbsp;</span></li>
-                <li><span>Thursday</span> <span> | 3:30PM – 4:30PM | 4:30PM - 5:30PM | &nbsp;</span></li>
-                <li><span>Friday</span> <span> | 3:30PM – 4:30PM | 4:30PM - 5:30PM | 5:30PM - 6:30PM | &nbsp;</span>
-                </li>
-                <li><span>Saturday</span> <span> | 11:00AM - 12:00PM | 12:00PM - 1:00PM | 1:00PM - 2:00PM | 2:00PM -
-                        3:00PM
-                        |3:00PM - 4:00PM| &nbsp; </span></li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Coaches -->
-    <section id="coaches">
-        <div class="inner">
-            <h2 class="slash-title" style="margin-bottom:4rem;">Academy Coaches</h2>
-            <div class="coach-wrap">
-                <div>
-                    <div class="tabs">
-                        <button class="tab active" onclick="showCoach('zac', this)">Zachary</button>
-                    </div>
-                    <h3 style="font-size:2.5rem;line-height:1.1;margin-bottom:1rem;">"Develop Your Mind,<br />Realize
-                        Your
-                        Potential"</h3>
-                    <p id="coach-bio">Coach Zachary is the Founder and Director of ESS Academy, licensed through FC
-                        Barcelona &
-                        U.S. Soccer. He specializes in fusing technical detail and physical prowess with mental mastery
-                        to create
-                        complete athletes.</p>
-                </div>
-                <img src="coach zach_github.png" class="coach-img" id="coach-img" alt="Coach" />
-            </div>
-        </div>
-    </section>
-
-    <!-- REVIEWS -->
-    <section id="reviews" style="padding:4rem 0;">
-        <div class="inner" style="text-align:center;">
-            <h2 class="slash-title" style="margin:auto;">Reviews</h2>
-            <div class="review-gallery">
-                <img src="Marisol Review.png" alt="Review 1" />
-                <img src="Patty Review.png" alt="Review 2" />
-                <img src="Elsin Review.png" alt="Review 3" />
-                <img src="Mirna Review.png" alt="Review 4" />
-            </div>
-        </div>
-    </section>
-
-    <div
-        style="margin: 3rem 0 4rem; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1rem;">
-        <a href="https://calendly.com/essa-info/30min" target="_blank" class="glow-button">
-            Schedule Your Free Intro Session
-        </a>
-
-        <a href="https://dot.cards/ess_academy" target="_blank" class="glow-button">
-            Get in Touch
-        </a>
+    <img src="Who are we image.png" alt="Player training" class="img-right"/>
+  </section>
+  
+  <!-- Philosophy -->
+  <section id="philosophy">
+    <div class="inner split">
+      <h2 class="slash-title">Academy Philosophy</h2>
+      <p>At ESS Academy <strong>intelligent repetition</strong> fuels mastery.  The academy empowers players with a performance toolbox through <strong>intentional data-driven repetition</strong>, refined through sessions that fuse relentless practice with reflective learning into a unified development arc. Students are coached to be <em>brave</em>, <em>composed</em>, <em>creative</em>, <em>original</em> and <em>unshakable</em> when the stakes are highest.</p>
     </div>
+  </section>
+
+<!-- Image Between Philosophy and Affiliations -->
+<img src="Axel_Francisco.png" alt="Philosophy Visual"
+     class="img-right"
+     style="margin-top: 0; margin-bottom: 3rem;" />
+
+  
+  <!-- Logos / Working With Players -->
+  <section id="affiliations" style="padding:4rem 0;">
+    <div class="inner" style="text-align:center;">
+      <h2 class="slash-title" style="margin:auto;">Working With Players From</h2>
+      <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:3rem;margin-top:3rem;opacity:.8;">
+        <!-- 8 placeholder club logos -->
+        <img src="Quakes Badge.png" alt="San Jose Earthquakes" width="150" />
+        <img src="SVU Badge.png" alt="South Valley United" width="150" />
+        <img src="SV Chivas Badge.png" alt="South Valley Chivas" width="150" />
+        <img src="CVP Badge.png" alt="Central Valley Premier" width="150" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Framework -->
+  <section id="framework">
+    <div class="inner split">
+      <h2 class="slash-title">Academy Framework</h2>
+      <div>
+        <div class="framework-item">
+          <h4>Data-Driven Technical Development</h4>
+          <p>ESS Academy operates on a measurable, evidence-based training model powered by its <strong>proprietary data system.</strong>  Sessions target quantifiable standards aligned directly to ESS Academy's official certification metrics.  Student training is guided by a performance dashboard available 24/7, supported by monthly performance reports that keep families informed while tracking performance across every core competency.  <strong>This is not “drill culture.”</strong>  This is precise, data-driven development for families serious about measurable improvement.</p>
+        </div>
+        <div class="framework-item">
+          <h4>Certification-Focused Training</h4>
+          <p>Every athlete’s training is focused toward the technical, physical, and cognitive benchmarks required to progress through ESS Academy’s certification program.  The training calendar is engineered to build the exact abilities measured in the certification process.  <strong>Progress is earned, measured, and verified.</strong></p>
+        </div>
+        <div class="framework-item">
+          <h4>Duels (Situational & Limited)</h4>
+          <p>Duels are used selectively to reinforce composure and situational problem-solving.  When appropriate, athletes are encouraged to challenge Zachary or other peers to test their execution under stress.  <strong>While duels are valuable, they are not the core program.</strong></p>
+        </div>
+        <div class="framework-item">
+          <h4>Micro-Scenario Training (Situational & Limited)</h4>
+          <p>Instead of traditional game-related practices or full team sessions, ESS Academy selectively uses short, targeted micro-scenarios designed to <strong>improve a specific measurable skill</strong> when appropriate.  Every scenario has one purpose: strengthen the metrics that matter for certification success.</p>
+        </div>
+         <div class="framework-item">
+          <h4>Small‑Sided Play (Situational & Limited)</h4>
+           <p>Used sparingly and only when group size allows, small-sided play helps athletes apply technical gains under pressure.  These sessions are short, intentional, and tied directly to certification elements.  <strong>While small-sided play is valuable, it is not the core program.</strong></p>
+           </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="inner split">
+      <h2 class="slash-title">Services</h2>
+      <div>
+        <h3 style="font-size:1.2rem;font-weight:600;margin-bottom:1rem;">Academy Certification Program</h3>
+        <img src="certification program.png" alt="Certificate" class="img-right cert-img"/>
+         <img src="Certification Program 2.png" alt="Certificate" class="img-right cert-img" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Schedule -->
+  <section id="schedule">
+    <div class="inner split">
+      <h2 class="slash-title">Schedule</h2>
+      <ul class="schedule-list">
+        <li><span>Monday</span> <span> | 3:30PM – 4:30PM | 4:30PM - 5:30PM | &nbsp;</span></li>
+        <li><span>Tuesday</span> <span> | 3:30PM – 4:30PM | 4:30PM - 5:30PM | 5:30PM - 6:30PM | &nbsp;</span></li>
+        <li><span>Wednesday</span> <span> | 1:30PM - 2:30PM | 2:30PM - 3:30PM | 3:30PM - 4:30PM | 4:30PM - 5:30PM | 5:30PM - 6:30PM | &nbsp;</span></li>
+        <li><span>Thursday</span> <span> | 3:30PM – 4:30PM | 4:30PM - 5:30PM | &nbsp;</span></li>
+        <li><span>Friday</span> <span> | 3:30PM – 4:30PM | 4:30PM - 5:30PM | 5:30PM - 6:30PM | &nbsp;</span></li>
+        <li><span>Saturday</span> <span> | 11:00AM - 12:00PM | 12:00PM - 1:00PM | 1:00PM - 2:00PM | 2:00PM - 3:00PM |3:00PM - 4:00PM| &nbsp; </span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Coaches -->
+  <section id="coaches">
+    <div class="inner">
+      <h2 class="slash-title" style="margin-bottom:4rem;">Academy Coaches</h2>
+      <div class="coach-wrap">
+        <div>
+          <div class="tabs">
+            <button class="tab active" onclick="showCoach('zac', this)">Zachary</button>
+          </div>
+          <h3 style="font-size:2.5rem;line-height:1.1;margin-bottom:1rem;">"Develop Your Mind,<br/>Realize Your Potential"</h3>
+          <p id="coach-bio">Coach Zachary is the Founder and Director of ESS Academy, licensed through FC Barcelona & U.S. Soccer.  He specializes in fusing technical detail and physical prowess with mental mastery to create complete athletes.</p>
+        </div>
+        <img src="coach zach_github.png" class="coach-img" id="coach-img" alt="Coach" />
+      </div>
+    </div>
+  </section>
+
+       <!-- REVIEWS -->
+<section id="reviews" style="padding:4rem 0;">
+    <div class="inner" style="text-align:center;">
+      <h2 class="slash-title" style="margin:auto;">Reviews</h2> 
+    <div class="review-gallery"> 
+    <img src="Marisol Review.png" alt="Review 1" />
+    <img src="Patty Review.png" alt="Review 2" />
+    <img src="Elsin Review.png" alt="Review 3" />
+     <img src="Mirna Review.png" alt="Review 4" />
+    </div>
+  </div>  
+</section>
+
+ <div style="margin: 3rem 0 4rem; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+  <a href="https://calendly.com/essa-info/30min"
+     target="_blank"
+     class="glow-button">
+     Schedule Your Free Intro Session
+  </a>
+
+  <a href="https://dot.cards/ess_academy"
+     target="_blank"
+     class="glow-button">
+     Get in Touch
+  </a>
+</div>
 
 
 
-    <footer>
-        &copy; <span id="yr"></span> ESS Academy. All rights reserved.
-    </footer>
+  <footer>
+    &copy; <span id="yr"></span> ESS Academy. All rights reserved.
+  </footer>
 
-    <script>
-        /* Coach Tabs */
-        const bios = {
-            zac: {
-                img: 'coach zach_github.png',
-                bio: 'Coach Zachary is the founder of ESS Academy, licensed through FC Barcelona & U.S. Soccer pathways. With a proven track record of nurturing MLS Next athletes, he specializes in fusing technical detail with mental resilience.'
-            }
-        }
-        function showCoach(id, el) {
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            el.classList.add('active');
-            document.getElementById('coach-img').src = bios[id].img;
-            document.getElementById('coach-bio').textContent = bios[id].bio;
-        }
-        document.getElementById('yr').textContent = new Date().getFullYear();
-    </script>
-
-    <!-- Scroll-Driven Image-Sequence Controller -->
-    <script>
-        (function () {
-            /* ========== CONFIGURATION ========== */
-            const TOTAL_FRAMES = 240;
-            const FRAME_PATH = '4k Emerald Rotation Video_PNG/';  // relative to HTML
-            const LERP_SPEED = 0.09;
-            const TEXT_LINES = ['Realize', 'Your Potential'];
-
-            /* ========== DOM REFS ========== */
-            const canvas = document.getElementById('emerald-canvas');
-            const ctx = canvas.getContext('2d');
-            const wrapper = document.getElementById('emerald-scroll');
-            const headline = document.getElementById('video-headline');
-            const hint = document.getElementById('video-scroll-hint');
-            const glow = document.getElementById('emerald-glow');
-            const particles = document.getElementById('emerald-particles');
-            const shimmerEl = document.getElementById('emerald-shimmer');
-            const loader = document.getElementById('seq-loader');
-            if (!canvas || !wrapper) return;
-
-            /* ========== IDLE STATE ========== */
-            let isIdle = true;
-
-            function exitIdle() {
-                if (!isIdle) return;
-                isIdle = false;
-                canvas.classList.remove('idle');
-                if (glow) glow.classList.remove('idle');
-                if (shimmerEl) shimmerEl.classList.remove('active');
-            }
-
-            /* ========== SPLIT TEXT INTO CHARACTERS ========== */
-            const charEls = [];
-            TEXT_LINES.forEach(function (lineText, li) {
-                const lineEl = document.getElementById('line-' + (li + 1));
-                for (let i = 0; i < lineText.length; i++) {
-                    const span = document.createElement('span');
-                    if (lineText[i] === ' ') {
-                        span.className = 'char space';
-                        span.innerHTML = '&nbsp;';
-                    } else {
-                        span.className = 'char';
-                        span.textContent = lineText[i];
-                    }
-                    lineEl.appendChild(span);
-                    charEls.push(span);
-                }
-            });
-            const totalChars = charEls.length;
-
-            /* ========== LOAD IMAGE SEQUENCE ========== */
-            const frames = new Array(TOTAL_FRAMES);
-            let loadedCount = 0;
-            let firstBatchReady = false;
-
-            function padNum(n) {
-                return String(n).padStart(5, '0');
-            }
-
-            // Load a subset (every 4th frame) first for quick start, then fill rest
-            const priorityIndices = [];
-            for (let i = 0; i < TOTAL_FRAMES; i += 4) priorityIndices.push(i);
-            const restIndices = [];
-            for (let i = 0; i < TOTAL_FRAMES; i++) {
-                if (i % 4 !== 0) restIndices.push(i);
-            }
-
-            function loadFrame(idx) {
-                return new Promise(function (resolve) {
-                    const img = new Image();
-                    img.onload = function () {
-                        frames[idx] = img;
-                        loadedCount++;
-                        resolve();
-                    };
-                    img.onerror = function () {
-                        loadedCount++;
-                        resolve();
-                    };
-                    img.src = FRAME_PATH + padNum(idx + 1) + '.png';
-                });
-            }
-
-            // Sequential batch loader (prevents browser overload)
-            async function loadBatch(indices, batchSize) {
-                for (let i = 0; i < indices.length; i += batchSize) {
-                    const batch = indices.slice(i, i + batchSize);
-                    await Promise.all(batch.map(loadFrame));
-                }
-            }
-
-            // Start loading
-            loadBatch(priorityIndices, 8).then(function () {
-                firstBatchReady = true;
-                // Size canvas from first loaded frame
-                const sample = frames.find(function (f) { return f; });
-                if (sample) {
-                    canvas.width = sample.naturalWidth;
-                    canvas.height = sample.naturalHeight;
-                }
-                // Hide loader
-                loader.classList.add('hidden');
-                // Activate idle shimmer now that images are loaded
-                if (shimmerEl) shimmerEl.classList.add('active');
-                // Draw first frame immediately
-                drawFrame(0);
-                // Continue loading remaining frames in background
-                loadBatch(restIndices, 6);
-            });
-
-            /* ========== CANVAS DRAWING ========== */
-            let lastDrawnIndex = -1;
-
-            function drawFrame(index) {
-                if (index === lastDrawnIndex) return;
-                // Find nearest loaded frame
-                let img = frames[index];
-                if (!img) {
-                    // Search nearby
-                    for (let d = 1; d < 5; d++) {
-                        if (frames[index - d]) { img = frames[index - d]; break; }
-                        if (frames[index + d]) { img = frames[index + d]; break; }
-                    }
-                }
-                if (!img) return;
-
-                const cw = canvas.width;
-                const ch = canvas.height;
-
-                // Clear
-                ctx.clearRect(0, 0, cw, ch);
-
-                // Draw image centered / cover
-                ctx.drawImage(img, 0, 0, cw, ch);
-
-                lastDrawnIndex = index;
-            }
-
-            /* ========== RESIZE HANDLER ========== */
-            function handleResize() {
-                const sample = frames.find(function (f) { return f; });
-                if (sample) {
-                    canvas.width = sample.naturalWidth;
-                    canvas.height = sample.naturalHeight;
-                }
-                lastDrawnIndex = -1; // force redraw
-            }
-            window.addEventListener('resize', handleResize);
-
-            /* ========== SCROLL STATE ========== */
-            let targetProgress = 0;
-            let smoothProgress = 0;
-
-            function readScroll() {
-                const rect = wrapper.getBoundingClientRect();
-                const scrollable = wrapper.offsetHeight - window.innerHeight;
-                if (scrollable <= 0) return;
-                const raw = -rect.top / scrollable;
-                targetProgress = Math.max(0, Math.min(1, raw));
-            }
-
-            window.addEventListener('scroll', readScroll, { passive: true });
-
-            /* ========== ANIMATION LOOP ========== */
-            function tick() {
-                requestAnimationFrame(tick);
-
-                /* Lerp smooth progress */
-                smoothProgress += (targetProgress - smoothProgress) * LERP_SPEED;
-                const p = smoothProgress;
-
-                /* Exit idle state on first meaningful scroll */
-                if (isIdle && p > 0.008) exitIdle();
-
-                /* ---- Draw the correct frame ---- */
-                if (firstBatchReady) {
-                    const frameIndex = Math.min(TOTAL_FRAMES - 1, Math.max(0, Math.floor(p * (TOTAL_FRAMES - 1))));
-                    drawFrame(frameIndex);
-                }
-
-                /* ---- character-by-character text animation ---- */
-                // Text appears between 15% and 35%, holds until 75%, fades 75-90%
-                const TEXT_IN_START = 0.15;
-                const TEXT_IN_END = 0.38;
-                const TEXT_HOLD_END = 0.72;
-                const TEXT_OUT_END = 0.90;
-                const STAGGER_RANGE = 0.10;  // stagger window for char reveal
-
-                let headlineOpacity = 0;
-
-                if (p >= TEXT_IN_START && p <= TEXT_OUT_END) {
-                    headlineOpacity = 1;
-                    headline.style.opacity = 1;
-
-                    if (p < TEXT_IN_END) {
-                        // REVEAL phase — stagger each character
-                        const revealProgress = (p - TEXT_IN_START) / (TEXT_IN_END - TEXT_IN_START);
-                        for (let i = 0; i < totalChars; i++) {
-                            const charStart = (i / totalChars) * STAGGER_RANGE;
-                            const charEnd = charStart + (1 - STAGGER_RANGE);
-                            const t = Math.max(0, Math.min(1, (revealProgress - charStart) / (charEnd - charStart)));
-                            // Ease out cubic
-                            const ease = 1 - Math.pow(1 - t, 3);
-                            charEls[i].style.opacity = ease;
-                            charEls[i].style.transform = 'translateY(' + (60 * (1 - ease)) + 'px) scale(' + (0.7 + 0.3 * ease) + ')';
-                            charEls[i].style.filter = 'blur(' + (8 * (1 - ease)) + 'px)';
-                        }
-                    } else if (p < TEXT_HOLD_END) {
-                        // HOLD phase — all chars fully visible
-                        for (let i = 0; i < totalChars; i++) {
-                            charEls[i].style.opacity = 1;
-                            charEls[i].style.transform = 'translateY(0) scale(1)';
-                            charEls[i].style.filter = 'blur(0)';
-                        }
-                    } else {
-                        // FADE OUT phase
-                        const fadeProgress = (p - TEXT_HOLD_END) / (TEXT_OUT_END - TEXT_HOLD_END);
-                        const easeFade = fadeProgress * fadeProgress; // ease in quad
-                        for (let i = 0; i < totalChars; i++) {
-                            charEls[i].style.opacity = 1 - easeFade;
-                            charEls[i].style.transform = 'translateY(' + (-30 * easeFade) + 'px) scale(' + (1 + 0.08 * easeFade) + ')';
-                            charEls[i].style.filter = 'blur(' + (6 * easeFade) + 'px)';
-                        }
-                    }
-                } else {
-                    headline.style.opacity = 0;
-                    for (let i = 0; i < totalChars; i++) {
-                        charEls[i].style.opacity = 0;
-                    }
-                }
-
-                /* Shimmer on text when fully visible */
-                if (p > TEXT_IN_END && p < TEXT_HOLD_END) {
-                    headline.classList.add('shimmer-active');
-                } else {
-                    headline.classList.remove('shimmer-active');
-                }
-
-                /* ---- Radial glow intensity ---- */
-                if (glow) {
-                    const glowIntensity = p < 0.1 ? p / 0.1 : p > 0.9 ? (1 - p) / 0.1 : 1;
-                    glow.style.opacity = glowIntensity * 0.8;
-                    const scale = 0.8 + glowIntensity * 0.4;
-                    glow.style.transform = 'translate(-50%,-50%) scale(' + scale + ')';
-                }
-
-                /* ---- Particles visibility ---- */
-                if (particles) {
-                    const pVis = p < 0.05 ? 0 : p > 0.92 ? Math.max(0, (1 - p) / 0.08) : 1;
-                    particles.style.opacity = pVis;
-                }
-
-                /* ---- Scroll hint fade ---- */
-                if (hint) {
-                    hint.style.opacity = p < 0.05 ? 1 : Math.max(0, 1 - (p - 0.05) / 0.08);
-                }
-            }
-
-            /* Kick off */
-            readScroll();
-            requestAnimationFrame(tick);
-        })();
-    </script>
+  <script>
+    /* Coach Tabs */
+    const bios = {
+      zac: {
+        img: 'coach zach_github.png',
+        bio: 'Coach Zachary is the founder of ESS Academy, licensed through FC Barcelona & U.S. Soccer pathways. With a proven track record of nurturing MLS Next athletes, he specializes in fusing technical detail with mental resilience.'
+      }
+    }
+    function showCoach(id, el) {
+      document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+      el.classList.add('active');
+      document.getElementById('coach-img').src = bios[id].img;
+      document.getElementById('coach-bio').textContent = bios[id].bio;
+    }
+    document.getElementById('yr').textContent = new Date().getFullYear();
+  </script>
 </body>
-
 </html>
