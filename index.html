@@ -591,11 +591,9 @@
             text-transform: uppercase;
         }
 
-        /* ===== REVIEWS ===== */
         .review-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
+            columns: 2;
+            column-gap: 1.5rem;
         }
 
         .review-grid img {
@@ -604,6 +602,8 @@
             border-radius: var(--radius);
             border: 1px solid var(--border-subtle);
             transition: all var(--transition-fast);
+            margin-bottom: 1.5rem;
+            break-inside: avoid;
         }
 
         .review-grid img:hover {
@@ -764,7 +764,7 @@
             }
 
             .review-grid {
-                grid-template-columns: 1fr 1fr;
+                columns: 2;
             }
 
             .coach-quote {
@@ -778,7 +778,7 @@
             }
 
             .review-grid {
-                grid-template-columns: 1fr;
+                columns: 1;
             }
 
             .framework-grid {
