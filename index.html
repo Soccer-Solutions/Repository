@@ -221,6 +221,58 @@
             z-index: -1;
         }
 
+        .firefly-container {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .firefly {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(167, 255, 219, .8) 0%, rgba(2, 176, 100, 0) 70%);
+            will-change: transform, opacity;
+            animation: fireflyDrift var(--ff-dur) ease-in-out infinite, fireflyGlow var(--ff-glow) ease-in-out infinite;
+        }
+
+        @keyframes fireflyDrift {
+            0% {
+                transform: translate(0, 0);
+            }
+
+            25% {
+                transform: translate(var(--ff-dx1), var(--ff-dy1));
+            }
+
+            50% {
+                transform: translate(var(--ff-dx2), var(--ff-dy2));
+            }
+
+            75% {
+                transform: translate(var(--ff-dx3), var(--ff-dy3));
+            }
+
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+
+        @keyframes fireflyGlow {
+
+            0%,
+            100% {
+                opacity: var(--ff-oMin);
+            }
+
+            50% {
+                opacity: var(--ff-oMax);
+            }
+        }
+
         .hero-overlay {
             position: absolute;
             inset: 0;
@@ -561,7 +613,6 @@
             width: 100%;
             height: auto;
             border-radius: var(--radius);
-            border: 1px solid var(--border-subtle);
         }
 
         .coach-quote {
@@ -600,7 +651,6 @@
             width: 100%;
             height: auto;
             border-radius: var(--radius);
-            border: 1px solid var(--border-subtle);
             transition: all var(--transition-fast);
             margin-bottom: 1.5rem;
             break-inside: avoid;
@@ -609,7 +659,6 @@
         .review-grid img:hover {
             transform: translateY(-4px);
             box-shadow: 0 12px 40px rgba(0, 0, 0, .4);
-            border-color: var(--border-accent);
         }
 
         /* ===== SERVICES ===== */
@@ -623,12 +672,10 @@
             width: 100%;
             height: auto;
             border-radius: var(--radius);
-            border: 1px solid var(--border-subtle);
             transition: all var(--transition-fast);
         }
 
         .cert-gallery img:hover {
-            border-color: var(--border-accent);
             box-shadow: 0 8px 30px rgba(0, 0, 0, .3);
         }
 
@@ -798,6 +845,7 @@
     <div class="emerald-sequence" id="top">
         <div class="emerald-sticky" id="emerald-scroll">
             <canvas id="emerald-canvas"></canvas>
+            <div class="firefly-container" id="firefly-container"></div>
             <div class="hero-overlay"></div>
 
             <div class="hero-content" id="hero-content-block">
@@ -1187,6 +1235,37 @@
                 contentBlock.style.transform = 'translateY(30px)';
             }
             readScroll();
+        })();
+
+        /* ----- FIREFLIES (CSS-only, GPU-composited) ----- */
+        (function () {
+            const container = document.getElementById('firefly-container');
+            if (!container) return;
+            const isMobile = window.innerWidth <= 768;
+            const count = isMobile ? 35 : 80;
+
+            for (let i = 0; i < count; i++) {
+                const el = document.createElement('div');
+                el.className = 'firefly';
+                const size = Math.random() * 6 + 3; // 3-9px
+                el.style.width = size + 'px';
+                el.style.height = size + 'px';
+                el.style.left = Math.random() * 100 + '%';
+                el.style.top = Math.random() * 100 + '%';
+                // Random drift offsets (CSS custom properties)
+                el.style.setProperty('--ff-dx1', (Math.random() * 80 - 40) + 'px');
+                el.style.setProperty('--ff-dy1', (Math.random() * 80 - 40) + 'px');
+                el.style.setProperty('--ff-dx2', (Math.random() * 80 - 40) + 'px');
+                el.style.setProperty('--ff-dy2', (Math.random() * 80 - 40) + 'px');
+                el.style.setProperty('--ff-dx3', (Math.random() * 80 - 40) + 'px');
+                el.style.setProperty('--ff-dy3', (Math.random() * 80 - 40) + 'px');
+                el.style.setProperty('--ff-dur', (Math.random() * 12 + 8) + 's');
+                el.style.setProperty('--ff-glow', (Math.random() * 4 + 2) + 's');
+                el.style.setProperty('--ff-oMin', (Math.random() * 0.15).toFixed(2));
+                el.style.setProperty('--ff-oMax', (Math.random() * 0.5 + 0.3).toFixed(2));
+                el.style.animationDelay = -(Math.random() * 20) + 's';
+                container.appendChild(el);
+            }
         })();
     </script>
 </body>
