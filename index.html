@@ -1,515 +1,1190 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ESS Academy – Soccer School in Exeter, CA | All Levels Welcome</title>
-  <link rel="icon" href="favicon_essa.ico" type="image/x-icon">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <meta name="description" content="ESS Academy is a soccer school in Exeter, CA. Train up to 6 days a week with our grassroots soccer school. Free 1-week trial. Serving Tulare County youth and competitive athletes.">
-  <meta name="keywords" content="soccer training near me, private soccer coaching in Exeter, soccer trainer Exeter, soccer club, soccer club Exeter, soccer club near me, soccer training Visalia, soccer training Tulare, soccer training Farmersville, soccer training Lindsay, soccer training Woodlake, soccer training Porterville, soccer team, soccer team near me, soccer near me">
-  <link rel="canonical" href="https://essa.soccer/">
 
-  <!---- Structured-data for Google rich results -->
-  <script type="application/ld+json">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ESS Academy – Soccer School in Exeter, CA | All Levels Welcome</title>
+    <link rel="icon" href="favicon_essa.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <meta name="description"
+        content="ESS Academy is a soccer school in Exeter, CA. Train up to 6 days a week with our grassroots soccer school. Free 1-week trial. Serving Tulare County youth and competitive athletes.">
+    <meta name="keywords"
+        content="soccer training near me, private soccer coaching in Exeter, soccer trainer Exeter, soccer club, soccer club Exeter, soccer club near me, soccer training Visalia, soccer training Tulare, soccer training Farmersville, soccer training Lindsay, soccer training Woodlake, soccer training Porterville, soccer team, soccer team near me, soccer near me">
+    <link rel="canonical" href="https://essa.soccer/">
+
+    <script type="application/ld+json">
   {
     "@context": "https://schema.org/",
     "@type": "Product",
     "name": "ESS Academy Soccer Development Program",
     "image": "https://essa.soccer/Reviews.png",
-    "description": "Soccer Development Academy in Exeter, CA serving Tulare County. Includes 1-week of free training with a pre-academy evaluation and year-round development with up to 6 training days per week.",
-    "brand": {
-      "@type": "Brand",
-      "name": "ESS Academy"
-    },
+    "description": "Soccer Development Academy in Exeter, CA serving Tulare County.",
+    "brand": { "@type": "Brand", "name": "ESS Academy" },
     "offers": {
-      "@type": "Offer",
-      "url": "https://essa.soccer",
-      "priceCurrency": "USD",
-      "price": "3800.00",
-      "priceValidUntil": "2900-12-31",
-      "availability": "https://schema.org/InStock",
+      "@type": "Offer", "url": "https://essa.soccer", "priceCurrency": "USD", "price": "3800.00",
+      "priceValidUntil": "2900-12-31", "availability": "https://schema.org/InStock",
       "itemCondition": "https://schema.org/NewCondition",
-     "shippingDetails": {
-    "@type": "OfferShippingDetails",
-    "shippingRate": {
-      "@type": "MonetaryAmount",
-      "value": 0.00,
-      "currency": "USD"
-    },
-    "shippingDestination": {
-      "@type": "DefinedRegion",
-      "addressCountry": "US"
+      "shippingDetails": { "@type": "OfferShippingDetails", "shippingRate": { "@type": "MonetaryAmount", "value": 0.00, "currency": "USD" }, "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "US" } },
+      "hasMerchantReturnPolicy": { "@type": "MerchantReturnPolicy", "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted" }
     }
-  },
-  "hasMerchantReturnPolicy": {
-    "@type": "MerchantReturnPolicy",
-    "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
-    }
-   }
   }
   </script>
-  
-  <style>
-    :root {
-      --accent: #02b064;
-      --bg-dark: #0d0d0d;
-      --bg-darker: #000;
-      --text-light: #f5f5f5;
-      --text-grey: #6e6e6e;
-      --max-w: 1400px;
-    }
-    
-      * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: var(--bg-dark);
-      color: var(--text-light);
-    }
-    a { color: inherit; text-decoration: none; }
-    
-    /* ---------- HEADER ---------- */
-    header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 2rem;
-      z-index: 999;
-      background: rgba(0, 0, 0, .35);
-      backdrop-filter: blur(6px);
-    }
-    .logo {
-      font-size: 1.4rem;
-      font-weight: 700;
-      letter-spacing: .5px;
-      color: var(--accent);
-    }
-    .menu-btn { font-size: .9rem; font-weight: 600; cursor: pointer; }
 
-    /* ---------- SECTION WRAPPER ---------- */
-    section { width: 100%; overflow: hidden; }
-    .inner { width: 90%; max-width: var(--max-w); margin: 0 auto; }
+    <style>
+        /* ===== DESIGN SYSTEM ===== */
+        :root {
+            --accent: #02b064;
+            --accent-light: #00e87e;
+            --accent-dim: #017a47;
+            --accent-glow: rgba(0, 232, 126, .25);
+            --bg-dark: #0a0a0a;
+            --bg-darker: #050505;
+            --bg-card: rgba(255, 255, 255, .04);
+            --bg-card-hover: rgba(255, 255, 255, .07);
+            --border-subtle: rgba(255, 255, 255, .08);
+            --border-accent: rgba(2, 176, 100, .25);
+            --text-light: #f0f0f0;
+            --text-muted: #999;
+            --text-dim: #555;
+            --max-w: 1200px;
+            --radius: 16px;
+            --radius-sm: 10px;
+            --radius-pill: 100px;
+            --glass-bg: rgba(255, 255, 255, .03);
+            --glass-border: rgba(255, 255, 255, .06);
+            --transition-fast: .2s cubic-bezier(.4, 0, .2, 1);
+            --transition-med: .4s cubic-bezier(.4, 0, .2, 1);
+            --transition-slow: .7s cubic-bezier(.4, 0, .2, 1);
 
-    /* ---------- HERO ---------- */
-   .hero {
-      height: 100vh;
-      position: relative;
-      z-index: 2;             /* ⬅️ make sure it's on top */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      background: url('website cover gustavo.png') center/cover no-repeat;
-      color: white;           /* ensure text is white */
-    }
-    .hero::after { /* dark overlay */
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,.55);
-    }
-   .hero-content {
-  /* existing styles … */
-  z-index: 3;
-  display: flex;
-  flex-direction: column;   /* stack headline + button */
-  align-items: center;      /* center horizontally */
-}
-    .scroll-down {
-      position: absolute;          /* ⬅️  put it back in absolute positioning  */
-      z-index: 3;                  /* ⬅️  keep it above the background image   */
-      color: white;           /* ensure arrow is visible */
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 2rem;
-      cursor: pointer;
-      color: var(--text-light);
-    }
-    .spots-note{
-  margin: .75rem 0 .25rem;
-  font-weight: 400;              /* not bold */
-  font-size: 1.25rem;           /* ~18px */
-  color: var(--text-light);
-  opacity: .95;
-  background: rgba(0,0,0,.35);   /* subtle pill */
-  border: 1px solid var(--accent);
-  padding: .45rem .9rem;
-  border-radius: .5rem;
-}
-@media (max-width: 768px){
-  .spots-note{ font-size: 1rem; }
-}
+            --font-display: 'Cinzel', serif;
+            --font-body: 'Inter', sans-serif;
+        }
 
-    /* ---------- LEFT TITLE LAYOUT ---------- */
-    .split {
-      display: grid;
-      grid-template-columns: minmax(180px, 220px) 1fr;
-      gap: 3rem;
-      align-items: start;
-      padding: 8rem 0 6rem;
-    }
-    .slash-title {
-      font-size: 1.1rem; /* Smaller font size */
-      font-weight: 600;
-      color: var(--text-light);
-      position: relative;
-    }
-    .slash-title::before {
-      content: '\\';
-      color: var(--accent);
-      margin-right: .3rem;
-    }
-    /* ---------- WHO ARE WE IMAGE ---------- */
-    .img-right {
-  width: 100%;
-  max-width: 1000px;
-  height: auto;
-  object-fit: cover;
-  display: block;
-  margin: 2rem auto 0 auto; 
-  border-radius: 6px;
-}
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-@media (min-width: 901px) {
-  .img-right {
-    max-width: 1500px; /* Prevent it from growing wider */
-    margin: 2rem auto 0 auto; /* center image on desktop */
-  }
-}
-@media (min-width: 901px) {
-  .img-right {
-    transform: translateX(+28px); /* Who Am I image */
-  }
+        html {
+            scroll-behavior: smooth;
+        }
 
-  .cert-img {
-    transform: translateX(-155px); /* Certification image */
-  }
-}
+        body {
+            font-family: var(--font-body);
+            background: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
 
-    /* ---------- FRAMEWORK ---------- */
-    .framework-item { margin-bottom: 3rem; }
-    .framework-item h4 {
-      font-size: 1rem;
-      letter-spacing: .5px;
-      margin-bottom: .6rem;
-      color: var(--text-light);
-    }
-    .framework-item p { color: var(--text-grey); font-size: 1rem; line-height: 1.6; }
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
+        /* ===== SCROLL REVEAL ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity var(--transition-slow), transform var(--transition-slow);
+        }
 
-    .schedule-list { list-style: none; }
-    .schedule-list li { display: flex; justify-content: space-between; padding: 1.1rem 0; border-bottom: 1px solid #222; }
-    .schedule-list span { font-size: .9rem; }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-    /* ---------- COACHES ---------- */
-    .coach-wrap { display: grid; grid-template-columns: 1fr 420px; gap: 3rem; padding: 6rem 0; }
-    .coach-img { width: 100%; height: auto; }
-    .tabs { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
-    .tab { padding: .4rem 1.2rem; font-size: .75rem; font-weight: 600; cursor: pointer; border: 2px solid var(--text-light); background: transparent; color: var(--text-light); }
-    .tab.active { background: var(--text-light); color: var(--bg-dark); }
-    
-    /* ---------- REVIEWS ---------- */
-    #reviews {
-  padding: 4rem 0;
-  background-color: var(--bg-dark);
-  color: var(--text-light);
-  text-align: center;
-}
+        .reveal-delay-1 {
+            transition-delay: .1s;
+        }
 
-#reviews h2 {
-  font-size: 1rem;
-  margin-bottom: 2rem;
-}
+        .reveal-delay-2 {
+            transition-delay: .2s;
+        }
 
-.review-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 2.5rem;
-  margin-top: 3rem;
-}
+        .reveal-delay-3 {
+            transition-delay: .3s;
+        }
 
-.review-gallery img {
-  width: 100%;
-  max-width: 380px;     /* full size on desktop */
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.4);
-}
- @media (min-width: 900px) {
-  .review-gallery {
-    gap: 1rem; /* Reduced gap to allow wider cards */
-    justify-content: center;
-    flex-wrap: wrap;
-  }
+        .reveal-delay-4 {
+            transition-delay: .4s;
+        }
 
-  .review-gallery img {
-    width: auto;
-    max-width: 55%;
-    flex: 1 1 48%;
-  }
-}
-    /* ---------- FOOTER ---------- */
-    footer { padding: 3rem 2rem; text-align: center; font-size: .85rem; background: var(--bg-darker); color: var(--text-grey); }
+        @media (prefers-reduced-motion: reduce) {
+            .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
 
-    @media (max-width: 900px) {
-      .split { grid-template-columns: 1fr; }
-      .slash-title { margin-bottom: 1.5rem; }
-      .coach-wrap { grid-template-columns: 1fr; }
-    }
-/* ---------- BUTTON---------- */
-    .glow-button {
-  display: inline-block;
-  padding: 0.75rem 1.75rem;
-  background-color: black;
-  color: #00ff44;
-  border: 2px solid #00ff44;
-  font-weight: bold;
-  font-size: 1rem;
-  text-transform: uppercase;
-  text-decoration: none;
-  border-radius: 8px;
-  box-shadow: 0 0 20px #00ff44;
-  transition: box-shadow 0.3s ease, background-color 0.3s ease;
-}
+            html {
+                scroll-behavior: auto;
+            }
+        }
 
-.glow-button:hover {
-  background-color: #00ff44;
-  color: black;
-  box-shadow: 0 0 30px #00ff44, 0 0 60px #00ff44;
-}
+        /* ===== HEADER ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 clamp(1.5rem, 4vw, 3rem);
+            z-index: 999;
+            background: rgba(10, 10, 10, .6);
+            backdrop-filter: blur(24px) saturate(1.4);
+            -webkit-backdrop-filter: blur(24px) saturate(1.4);
+            border-bottom: 1px solid var(--glass-border);
+            transition: background var(--transition-fast);
+        }
 
-  @media (max-width: 768px) {
-  .hero {
-    height: 90vh; /* Don't shrink too much */
-    background-size: cover;
-    background-position: center;
-    padding: 2rem 1rem; /* Give breathing room */
-  }
+        header.scrolled {
+            background: rgba(10, 10, 10, .85);
+            border-bottom-color: var(--border-accent);
+        }
 
-  .hero-content h1 {
-    font-size: 2.2rem;
-    line-height: 1.3;
-    margin-bottom: 1.5rem;
-  }
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, var(--accent-light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
 
-  .glow-button {
-    font-size: 1rem;
-    padding: 0.75rem 1.5rem;
-  }
+        .menu-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .5rem 1.2rem;
+            font-family: var(--font-body);
+            font-size: .8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius-pill);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            text-transform: uppercase;
+        }
 
-  .scroll-down {
-    bottom: 20px;
-    font-size: 1.5rem;
-  }
-}
+        .menu-btn:hover {
+            background: var(--accent);
+            color: #000;
+            border-color: var(--accent);
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
 
+        /* ===== EMERALD SCROLL SEQUENCE ===== */
+        .emerald-sequence {
+            position: relative;
+            height: 400vh;
+            background: var(--bg-dark);
+            z-index: 2;
+        }
 
-  </style>
+        .emerald-sticky {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #emerald-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            filter: contrast(1.1) brightness(1.2);
+            mix-blend-mode: screen;
+            opacity: 0.85;
+            z-index: -1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, rgba(0, 0, 0, .1) 0%, rgba(0, 0, 0, .85) 100%);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* ===== HERO CONTENT ===== */
+        .hero-content {
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            margin-top: -3rem;
+            position: relative;
+            pointer-events: auto;
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #fff 0%, var(--accent-light) 40%, #fff 60%, #fff 100%);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shimmer 5s linear infinite;
+        }
+
+        @keyframes shimmer {
+            to {
+                background-position: 200% center;
+            }
+        }
+
+        .spots-note {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            font-weight: 400;
+            font-size: .85rem;
+            letter-spacing: .3px;
+            color: rgba(255, 255, 255, .65);
+            background: rgba(255, 255, 255, .04);
+            border: 1px solid rgba(255, 255, 255, .1);
+            padding: .5rem 1.2rem;
+            border-radius: var(--radius-pill);
+        }
+
+        .spots-note::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 4px var(--accent);
+            animation: dotPulse 2.5s ease-in-out infinite;
+        }
+
+        @keyframes dotPulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: .4;
+            }
+        }
+
+        .scroll-down {
+            position: absolute;
+            z-index: 3;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.6rem;
+            cursor: pointer;
+            color: var(--accent-light);
+            opacity: .6;
+            animation: bounceArrow 2s ease-in-out infinite;
+        }
+
+        @keyframes bounceArrow {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(8px);
+            }
+        }
+
+        /* ===== CTA BUTTONS ===== */
+        .glow-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.85rem 2rem;
+            background: rgba(2, 176, 100, 0.1);
+            color: #fff;
+            border: 1px solid rgba(2, 176, 100, 0.5);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            text-decoration: none;
+            border-radius: var(--radius-pill);
+            box-shadow: 0 0 20px rgba(2, 176, 100, .15);
+            transition: all var(--transition-fast);
+            backdrop-filter: blur(4px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glow-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, .2), transparent);
+            transform: skewX(-25deg);
+            transition: all .6s ease;
+        }
+
+        .glow-button:hover {
+            background: rgba(2, 176, 100, 0.25);
+            border-color: rgba(2, 176, 100, 0.8);
+            box-shadow: 0 0 30px rgba(2, 176, 100, .3), inset 0 0 15px rgba(2, 176, 100, .15);
+            transform: translateY(-2px);
+        }
+
+        .glow-button:hover::before {
+            left: 200%;
+        }
+
+        /* ===== SECTION LAYOUT ===== */
+        section {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .inner {
+            width: 90%;
+            max-width: var(--max-w);
+            margin: 0 auto;
+        }
+
+        .section-pad {
+            padding: clamp(4rem, 8vw, 8rem) 0;
+        }
+
+        .section-subtitle {
+            font-size: .8rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: .75rem;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            letter-spacing: -.01em;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -.5rem;
+            width: 40px;
+            height: 3px;
+            border-radius: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+        }
+
+        [style*="text-align:center"] .section-title::before,
+        [style*="text-align: center"] .section-title::before {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-text {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            max-width: 700px;
+        }
+
+        .section-text strong {
+            color: var(--text-light);
+        }
+
+        .section-text em {
+            color: var(--accent-light);
+            font-style: normal;
+        }
+
+        /* ===== SPLIT GRID ===== */
+        .split-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: clamp(2rem, 5vw, 5rem);
+            align-items: center;
+        }
+
+        /* ===== IMAGE STYLE ===== */
+        .img-showcase {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: var(--radius);
+            object-fit: cover;
+            border: 1px solid var(--border-subtle);
+        }
+
+        /* ===== GLASS CARD ===== */
+        .glass-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius);
+            padding: clamp(1.5rem, 3vw, 2.5rem);
+            transition: all var(--transition-fast);
+        }
+
+        .glass-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-accent);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, .3);
+        }
+
+        .glass-card h4 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: .75rem;
+        }
+
+        .glass-card p {
+            color: var(--text-muted);
+            font-size: .95rem;
+            line-height: 1.7;
+        }
+
+        .framework-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+        }
+
+        /* ===== AFFILIATIONS ===== */
+        .logo-strip {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: clamp(2rem, 4vw, 4rem);
+            align-items: center;
+        }
+
+        .logo-strip img {
+            width: 100px;
+            height: auto;
+            filter: grayscale(1) brightness(.7);
+            transition: all var(--transition-fast);
+        }
+
+        .logo-strip img:hover {
+            filter: grayscale(0) brightness(1);
+            transform: scale(1.1);
+        }
+
+        /* ===== SCHEDULE ===== */
+        .schedule-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .schedule-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-subtle);
+            transition: background var(--transition-fast);
+            font-size: .9rem;
+        }
+
+        .schedule-row:last-child {
+            border-bottom: none;
+        }
+
+        .schedule-row:hover {
+            background: rgba(2, 176, 100, .04);
+        }
+
+        .schedule-day {
+            font-weight: 600;
+            color: var(--text-light);
+            min-width: 100px;
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .schedule-times {
+            color: var(--text-muted);
+            text-align: right;
+        }
+
+        /* ===== COACHES ===== */
+        .coach-layout {
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: clamp(2rem, 4vw, 4rem);
+            align-items: center;
+        }
+
+        .coach-img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .coach-quote {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #fff, var(--accent-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .coach-bio {
+            color: var(--text-muted);
+            font-size: .95rem;
+            line-height: 1.8;
+        }
+
+        .coach-name {
+            margin-top: 1rem;
+            font-weight: 600;
+            color: var(--accent);
+            font-size: .85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* ===== REVIEWS ===== */
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .review-grid img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-subtle);
+            transition: all var(--transition-fast);
+        }
+
+        .review-grid img:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, .4);
+            border-color: var(--border-accent);
+        }
+
+        /* ===== SERVICES ===== */
+        .cert-gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .cert-gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: var(--radius);
+            border: 1px solid var(--border-subtle);
+            transition: all var(--transition-fast);
+        }
+
+        .cert-gallery img:hover {
+            border-color: var(--border-accent);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, .3);
+        }
+
+        /* ===== BOTTOM CTA ===== */
+        .bottom-cta {
+            text-align: center;
+            padding: clamp(4rem, 8vw, 6rem) 2rem;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, rgba(2, 176, 100, .03) 50%, var(--bg-darker) 100%);
+        }
+
+        .bottom-cta h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .cta-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* ===== SEPARATOR ===== */
+        .section-divider {
+            width: 90%;
+            max-width: var(--max-w);
+            margin: 0 auto;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border-subtle), transparent);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            padding: 2.5rem 2rem;
+            text-align: center;
+            font-size: .8rem;
+            background: var(--bg-darker);
+            color: var(--text-dim);
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        /* ===== MOBILE ===== */
+        @media (max-width: 900px) {
+            .split-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .coach-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .cert-gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .framework-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .emerald-sequence {
+                height: 300vh;
+            }
+
+            .emerald-sticky {
+                align-items: flex-start;
+                padding-top: 15vh;
+            }
+
+            .hero-content {
+                margin-top: 0;
+                padding: 0 1.25rem;
+            }
+
+            .hero-title {
+                font-size: clamp(2rem, 9vw, 3.2rem);
+                line-height: 1.15;
+                letter-spacing: -.5px;
+            }
+
+            .spots-note {
+                font-size: .8rem;
+                padding: .4rem 1rem;
+            }
+
+            .glow-button {
+                font-size: .78rem;
+                padding: .7rem 1.4rem;
+                width: 100%;
+                max-width: 320px;
+            }
+
+            .scroll-down {
+                bottom: 20px;
+                font-size: 1.3rem;
+            }
+
+            header {
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+                background: rgba(10, 10, 10, .85);
+                height: 60px;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .section-pad {
+                padding: clamp(3rem, 6vw, 5rem) 0;
+            }
+
+            .inner {
+                width: 92%;
+            }
+
+            .schedule-row {
+                flex-direction: column;
+                gap: .3rem;
+                text-align: center;
+            }
+
+            .schedule-day {
+                min-width: auto;
+            }
+
+            .schedule-times {
+                text-align: center;
+                font-size: .8rem;
+            }
+
+            .review-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .coach-quote {
+                font-size: clamp(1.3rem, 5vw, 1.8rem);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: clamp(1.8rem, 8.5vw, 2.8rem);
+            }
+
+            .review-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .framework-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
+
 <body>
-  <!-- Header -->
-  <header>
-    <div class="logo">ESSA</div>
-    <a href="https://dot.cards/ess_academy" target="_blank" class="menu-btn">[MENU]</a>
-  </header>
+    <header id="main-header">
+        <div class="logo">ESSA</div>
+        <a href="https://dot.cards/ess_academy" target="_blank" class="menu-btn">Menu</a>
+    </header>
 
-  <!-- Hero -->
-<section class="hero" id="top">
-  <div class="hero-content">
-    <h1 style="font-size:3.5rem;font-weight:700;">
-      Command the Ball,<br />Command the Game
-    </h1>
-    <p class="spots-note">19 Academy Spots Remaining for 2026</p>
+    <!-- Hero Scroll Sequence -->
+    <div class="emerald-sequence" id="top">
+        <div class="emerald-sticky" id="emerald-scroll">
+            <canvas id="emerald-canvas"></canvas>
+            <div class="hero-overlay"></div>
 
+            <div class="hero-content" id="hero-content-block">
+                <h1 class="hero-title" id="hero-title">
+                    Realize Your<br />Potential
+                </h1>
+                <a href="https://calendly.com/essa-info/30min" target="_blank" class="glow-button"
+                    style="margin-top:1rem;">
+                    Schedule Your Free Intro Session
+                </a>
+                <a href="https://dot.cards/ess_academy" target="_blank" class="glow-button" style="margin-top:1rem;">
+                    Get in Touch
+                </a>
+            </div>
 
-    <!-- 🔽 put the CTA inside hero-content so flex can center it -->
-    <a href="https://calendly.com/essa-info/30min"
-   target="_blank"
-   class="glow-button"
-   style="margin-top:1rem;">
-   Schedule Your Free Intro Session
-</a>
-    
-    <a href="https://dot.cards/ess_academy"
-       target="_blank"
-       class="glow-button"
-       style="margin-top:1.5rem;">
-       Get in Touch
-    </a>
-  </div>
-
-  <!-- keep the scroll arrow where it is -->
-  <div class="scroll-down"
-       onclick="document.getElementById('who').scrollIntoView({behavior:'smooth'});">
-       &#8595;
-  </div>
-</section>
-
-  <!-- Who Am I -->
-  <section id="who">
-    <div class="inner split">
-      <h2 class="slash-title">Get to know ESS Academy</h2>
-      <p>Welcome to <strong>ESS Academy</strong>, a soccer development academy that believes everyone carries a hidden '<strong>emerald</strong>' -their unrealized potential- and is dedicated to helping them unearth it and realize their potential through <strong><em>measurable, data-driven growth.</em></strong>  The academy cultivates a culture that marries <em>technical mastery</em> with <em>mental resilience</em>, ensuring players not only survive but excel under elite‑level stress.  ESS Academy brings Barça‑inspired methodology and MLS Next‑proven results to athletes committed to a <strong>genuine, lasting transformation.</strong></p>
-    </div>
-    <img src="Who are we image.png" alt="Player training" class="img-right"/>
-  </section>
-  
-  <!-- Philosophy -->
-  <section id="philosophy">
-    <div class="inner split">
-      <h2 class="slash-title">Academy Philosophy</h2>
-      <p>At ESS Academy <strong>intelligent repetition</strong> fuels mastery.  The academy empowers players with a performance toolbox through <strong>intentional data-driven repetition</strong>, refined through sessions that fuse relentless practice with reflective learning into a unified development arc. Students are coached to be <em>brave</em>, <em>composed</em>, <em>creative</em>, <em>original</em> and <em>unshakable</em> when the stakes are highest.</p>
-    </div>
-  </section>
-
-<!-- Image Between Philosophy and Affiliations -->
-<img src="Axel_Francisco.png" alt="Philosophy Visual"
-     class="img-right"
-     style="margin-top: 0; margin-bottom: 3rem;" />
-
-  
-  <!-- Logos / Working With Players -->
-  <section id="affiliations" style="padding:4rem 0;">
-    <div class="inner" style="text-align:center;">
-      <h2 class="slash-title" style="margin:auto;">Working With Players From</h2>
-      <div style="display:flex;justify-content:center;flex-wrap:wrap;gap:3rem;margin-top:3rem;opacity:.8;">
-        <!-- 8 placeholder club logos -->
-        <img src="Quakes Badge.png" alt="San Jose Earthquakes" width="150" />
-        <img src="SVU Badge.png" alt="South Valley United" width="150" />
-        <img src="SV Chivas Badge.png" alt="South Valley Chivas" width="150" />
-        <img src="CVP Badge.png" alt="Central Valley Premier" width="150" />
-      </div>
-    </div>
-  </section>
-
-  <!-- Framework -->
-  <section id="framework">
-    <div class="inner split">
-      <h2 class="slash-title">Academy Framework</h2>
-      <div>
-        <div class="framework-item">
-          <h4>Data-Driven Technical Development</h4>
-          <p>ESS Academy operates on a measurable, evidence-based training model powered by its <strong>proprietary data system.</strong>  Sessions target quantifiable standards aligned directly to ESS Academy's official certification metrics.  Student training is guided by a performance dashboard available 24/7, supported by monthly performance reports that keep families informed while tracking performance across every core competency.  <strong>This is not “drill culture.”</strong>  This is precise, data-driven development for families serious about measurable improvement.</p>
+            <div class="scroll-down" id="scroll-prompt"
+                onclick="document.getElementById('who').scrollIntoView({behavior:'smooth'});">
+                &#8595;
+            </div>
         </div>
-        <div class="framework-item">
-          <h4>Certification-Focused Training</h4>
-          <p>Every athlete’s training is focused toward the technical, physical, and cognitive benchmarks required to progress through ESS Academy’s certification program.  The training calendar is engineered to build the exact abilities measured in the certification process.  <strong>Progress is earned, measured, and verified.</strong></p>
+    </div>
+
+    <!-- Who Am I -->
+    <section id="who" class="section-pad">
+        <div class="inner split-grid">
+            <div>
+                <p class="section-subtitle reveal">About</p>
+                <h2 class="section-title reveal reveal-delay-1">Get to Know ESS Academy</h2>
+                <p class="section-text reveal reveal-delay-2" style="margin-top:1.5rem;">Welcome to <strong>ESS
+                        Academy</strong>, a soccer development academy that believes everyone carries a hidden
+                    '<strong>emerald</strong>' &#8212; their unrealized potential &#8212; and is dedicated to helping
+                    them unearth it and realize their potential through <em>measurable, data-driven growth.</em> The
+                    academy cultivates a culture that marries <em>technical mastery</em> with <em>mental
+                        resilience</em>, ensuring players not only survive but excel under elite&#8209;level stress. ESS
+                    Academy brings Bar&ccedil;a&#8209;inspired methodology and MLS Next&#8209;proven results to athletes
+                    committed to a <strong>genuine, lasting transformation.</strong></p>
+            </div>
+            <div class="reveal reveal-delay-3">
+                <img src="Who are we image.png" alt="Player training" class="img-showcase" />
+            </div>
         </div>
-        <div class="framework-item">
-          <h4>Duels (Situational & Limited)</h4>
-          <p>Duels are used selectively to reinforce composure and situational problem-solving.  When appropriate, athletes are encouraged to challenge Zachary or other peers to test their execution under stress.  <strong>While duels are valuable, they are not the core program.</strong></p>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Philosophy -->
+    <section id="philosophy" class="section-pad">
+        <div class="inner split-grid">
+            <div>
+                <p class="section-subtitle reveal">Philosophy</p>
+                <h2 class="section-title reveal reveal-delay-1">Academy Philosophy</h2>
+                <p class="section-text reveal reveal-delay-2" style="margin-top:1.5rem;">At ESS Academy
+                    <strong>intelligent repetition</strong> fuels mastery. The academy empowers players with a
+                    performance toolbox through <strong>intentional data-driven repetition</strong>, refined through
+                    sessions that fuse relentless practice with reflective learning into a unified development arc.
+                    Students are coached to be <em>brave</em>, <em>composed</em>, <em>creative</em>,
+                    <em>original</em> and <em>unshakable</em> when the stakes are highest.
+                </p>
+            </div>
+            <div class="reveal reveal-delay-3">
+                <img src="Axel_Francisco.png" alt="Philosophy Visual" class="img-showcase" />
+            </div>
         </div>
-        <div class="framework-item">
-          <h4>Micro-Scenario Training (Situational & Limited)</h4>
-          <p>Instead of traditional game-related practices or full team sessions, ESS Academy selectively uses short, targeted micro-scenarios designed to <strong>improve a specific measurable skill</strong> when appropriate.  Every scenario has one purpose: strengthen the metrics that matter for certification success.</p>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Affiliations -->
+    <section id="affiliations" class="section-pad" style="text-align:center;">
+        <div class="inner">
+            <h2 class="section-title reveal" style="margin:0 auto 3rem;">Working With Players From</h2>
+            <div class="logo-strip reveal reveal-delay-2">
+                <img src="Quakes Badge.png" alt="San Jose Earthquakes" width="100" />
+                <img src="SVU Badge.png" alt="South Valley United" width="100" />
+                <img src="SV Chivas Badge.png" alt="South Valley Chivas" width="100" />
+                <img src="CVP Badge.png" alt="Central Valley Premier" width="100" />
+            </div>
         </div>
-         <div class="framework-item">
-          <h4>Small‑Sided Play (Situational & Limited)</h4>
-           <p>Used sparingly and only when group size allows, small-sided play helps athletes apply technical gains under pressure.  These sessions are short, intentional, and tied directly to certification elements.  <strong>While small-sided play is valuable, it is not the core program.</strong></p>
-           </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Services -->
-  <section id="services">
-    <div class="inner split">
-      <h2 class="slash-title">Services</h2>
-      <div>
-        <h3 style="font-size:1.2rem;font-weight:600;margin-bottom:1rem;">Academy Certification Program</h3>
-        <img src="certification program.png" alt="Certificate" class="img-right cert-img"/>
-         <img src="Certification Program 2.png" alt="Certificate" class="img-right cert-img" />
-      </div>
-    </div>
-  </section>
+    <div class="section-divider"></div>
 
-  <!-- Schedule -->
-  <section id="schedule">
-    <div class="inner split">
-      <h2 class="slash-title">Schedule</h2>
-      <ul class="schedule-list">
-        <li><span>Monday</span> <span> | 3:30PM – 4:30PM | 4:30PM - 5:30PM | &nbsp;</span></li>
-        <li><span>Tuesday</span> <span> | 3:30PM – 4:30PM | 4:30PM - 5:30PM | 5:30PM - 6:30PM | &nbsp;</span></li>
-        <li><span>Wednesday</span> <span> | 1:30PM - 2:30PM | 2:30PM - 3:30PM | 3:30PM - 4:30PM | 4:30PM - 5:30PM | 5:30PM - 6:30PM | &nbsp;</span></li>
-        <li><span>Thursday</span> <span> | 3:30PM – 4:30PM | 4:30PM - 5:30PM | &nbsp;</span></li>
-        <li><span>Friday</span> <span> | 3:30PM – 4:30PM | 4:30PM - 5:30PM | 5:30PM - 6:30PM | &nbsp;</span></li>
-        <li><span>Saturday</span> <span> | 11:00AM - 12:00PM | 12:00PM - 1:00PM | 1:00PM - 2:00PM | 2:00PM - 3:00PM |3:00PM - 4:00PM| &nbsp; </span></li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Coaches -->
-  <section id="coaches">
-    <div class="inner">
-      <h2 class="slash-title" style="margin-bottom:4rem;">Academy Coaches</h2>
-      <div class="coach-wrap">
-        <div>
-          <div class="tabs">
-            <button class="tab active" onclick="showCoach('zac', this)">Zachary</button>
-          </div>
-          <h3 style="font-size:2.5rem;line-height:1.1;margin-bottom:1rem;">"Develop Your Mind,<br/>Realize Your Potential"</h3>
-          <p id="coach-bio">Coach Zachary is the Founder and Director of ESS Academy, licensed through FC Barcelona & U.S. Soccer.  He specializes in fusing technical detail and physical prowess with mental mastery to create complete athletes.</p>
+    <!-- Framework -->
+    <section id="framework" class="section-pad">
+        <div class="inner">
+            <p class="section-subtitle reveal">Training</p>
+            <h2 class="section-title reveal reveal-delay-1">Academy Framework</h2>
+            <div class="framework-grid" style="margin-top:2.5rem;">
+                <div class="glass-card reveal reveal-delay-1">
+                    <h4>Data-Driven Technical Development</h4>
+                    <p>ESS Academy operates on a measurable, evidence-based training model powered by its
+                        <strong>proprietary data system.</strong> Sessions target quantifiable standards aligned
+                        directly
+                        to ESS Academy's official certification metrics. <strong>This is not "drill
+                            culture."</strong> This is precise, data-driven development for families serious about
+                        measurable improvement.
+                    </p>
+                </div>
+                <div class="glass-card reveal reveal-delay-2">
+                    <h4>Certification-Focused Training</h4>
+                    <p>Every athlete's training is focused toward the technical, physical, and cognitive benchmarks
+                        required to progress through ESS Academy's certification program. <strong>Progress is earned,
+                            measured, and verified.</strong></p>
+                </div>
+                <div class="glass-card reveal reveal-delay-3">
+                    <h4>Duels (Situational &amp; Limited)</h4>
+                    <p>Duels are used selectively to reinforce composure and situational problem-solving.
+                        <strong>While duels are valuable, they are not the core program.</strong>
+                    </p>
+                </div>
+                <div class="glass-card reveal reveal-delay-1">
+                    <h4>Micro-Scenario Training</h4>
+                    <p>Short, targeted micro-scenarios designed to <strong>improve a specific measurable
+                            skill</strong>. Every scenario strengthens the metrics that matter for certification
+                        success.
+                    </p>
+                </div>
+                <div class="glass-card reveal reveal-delay-2">
+                    <h4>Small-Sided Play</h4>
+                    <p>Used sparingly, small-sided play helps athletes apply technical gains under pressure.
+                        <strong>While small-sided play is valuable, it is not the core program.</strong>
+                    </p>
+                </div>
+            </div>
         </div>
-        <img src="coach zach_github.png" class="coach-img" id="coach-img" alt="Coach" />
-      </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Services -->
+    <section id="services" class="section-pad">
+        <div class="inner">
+            <p class="section-subtitle reveal">Services</p>
+            <h2 class="section-title reveal reveal-delay-1">Academy Certification Program</h2>
+            <div class="cert-gallery reveal reveal-delay-2" style="margin-top:2rem;">
+                <img src="certification program.png" alt="Certificate" />
+                <img src="Certification Program 2.png" alt="Certificate 2" />
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Schedule -->
+    <section id="schedule" class="section-pad">
+        <div class="inner">
+            <p class="section-subtitle reveal">Training Times</p>
+            <h2 class="section-title reveal reveal-delay-1">Weekly Schedule</h2>
+            <div class="schedule-card reveal reveal-delay-2" style="margin-top:2rem;max-width:800px;">
+                <div class="schedule-row"><span class="schedule-day">Monday</span><span class="schedule-times">3:30
+                        &#8211; 4:30 PM &nbsp;|&nbsp; 4:30 &#8211; 5:30 PM</span></div>
+                <div class="schedule-row"><span class="schedule-day">Tuesday</span><span class="schedule-times">3:30
+                        &#8211; 4:30 PM &nbsp;|&nbsp; 4:30 &#8211; 5:30 PM &nbsp;|&nbsp; 5:30 &#8211; 6:30 PM</span>
+                </div>
+                <div class="schedule-row"><span class="schedule-day">Wednesday</span><span class="schedule-times">1:30
+                        &#8211; 2:30 PM &nbsp;|&nbsp; 2:30 &#8211; 3:30 PM &nbsp;|&nbsp; 3:30 &#8211; 4:30 PM
+                        &nbsp;|&nbsp; 4:30 &#8211; 5:30 PM &nbsp;|&nbsp; 5:30 &#8211; 6:30 PM</span></div>
+                <div class="schedule-row"><span class="schedule-day">Thursday</span><span class="schedule-times">3:30
+                        &#8211; 4:30 PM &nbsp;|&nbsp; 4:30 &#8211; 5:30 PM</span></div>
+                <div class="schedule-row"><span class="schedule-day">Friday</span><span class="schedule-times">3:30
+                        &#8211; 4:30 PM &nbsp;|&nbsp; 4:30 &#8211; 5:30 PM &nbsp;|&nbsp; 5:30 &#8211; 6:30 PM</span>
+                </div>
+                <div class="schedule-row"><span class="schedule-day">Saturday</span><span class="schedule-times">11:00
+                        AM &#8211; 12:00 PM &nbsp;|&nbsp; 12:00 &#8211; 1:00 PM &nbsp;|&nbsp; 1:00 &#8211; 2:00 PM
+                        &nbsp;|&nbsp; 2:00 &#8211; 3:00 PM &nbsp;|&nbsp; 3:00 &#8211; 4:00 PM</span></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Coaches -->
+    <section id="coaches" class="section-pad">
+        <div class="inner">
+            <p class="section-subtitle reveal">Leadership</p>
+            <h2 class="section-title reveal reveal-delay-1">Academy Coaches</h2>
+            <div class="coach-layout reveal reveal-delay-2" style="margin-top:3rem;">
+                <div>
+                    <p class="coach-quote">"Develop Your Mind,<br />Realize Your Potential"</p>
+                    <p class="coach-bio" id="coach-bio">Coach Zachary is the Founder and Director of ESS Academy,
+                        licensed through FC Barcelona &amp; U.S. Soccer. He specializes in fusing technical detail and
+                        physical prowess with mental mastery to create complete athletes.</p>
+                    <p class="coach-name">Zachary &#8212; Founder &amp; Director</p>
+                </div>
+                <img src="coach zach_github.png" class="coach-img" id="coach-img" alt="Coach Zachary" />
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- Reviews -->
+    <section id="reviews" class="section-pad" style="text-align:center;">
+        <div class="inner">
+            <p class="section-subtitle reveal">Testimonials</p>
+            <h2 class="section-title reveal reveal-delay-1" style="margin:0 auto 2.5rem;">What Families Say</h2>
+            <div class="review-grid reveal reveal-delay-2">
+                <img src="Marisol Review.png" alt="Review from Marisol" />
+                <img src="Patty Review.png" alt="Review from Patty" />
+                <img src="Elsin Review.png" alt="Review from Elsin" />
+                <img src="Mirna Review.png" alt="Review from Mirna" />
+            </div>
+        </div>
+    </section>
+
+    <div class="bottom-cta">
+        <h2 class="reveal">Ready to Begin?</h2>
+        <div class="cta-group reveal reveal-delay-1">
+            <a href="https://calendly.com/essa-info/30min" target="_blank" class="glow-button">Schedule Your Free Intro
+                Session</a>
+            <a href="https://dot.cards/ess_academy" target="_blank" class="glow-button">Get in Touch</a>
+        </div>
     </div>
-  </section>
 
-       <!-- REVIEWS -->
-<section id="reviews" style="padding:4rem 0;">
-    <div class="inner" style="text-align:center;">
-      <h2 class="slash-title" style="margin:auto;">Reviews</h2> 
-    <div class="review-gallery"> 
-    <img src="Marisol Review.png" alt="Review 1" />
-    <img src="Patty Review.png" alt="Review 2" />
-    <img src="Elsin Review.png" alt="Review 3" />
-     <img src="Mirna Review.png" alt="Review 4" />
-    </div>
-  </div>  
-</section>
+    <footer>&copy; <span id="yr"></span> ESS Academy. All rights reserved.</footer>
 
- <div style="margin: 3rem 0 4rem; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 1rem;">
-  <a href="https://calendly.com/essa-info/30min"
-     target="_blank"
-     class="glow-button">
-     Schedule Your Free Intro Session
-  </a>
+    <script>
+        /* Year + Header scroll */
+        document.getElementById('yr').textContent = new Date().getFullYear();
+        const header = document.getElementById('main-header');
+        window.addEventListener('scroll', function () {
+            header.classList.toggle('scrolled', window.scrollY > 60);
+        }, { passive: true });
 
-  <a href="https://dot.cards/ess_academy"
-     target="_blank"
-     class="glow-button">
-     Get in Touch
-  </a>
-</div>
+        /* Scroll Reveal Observer */
+        const revealEls = document.querySelectorAll('.reveal');
+        const revealObs = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+                if (e.isIntersecting) { e.target.classList.add('visible'); }
+                else { e.target.classList.remove('visible'); }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+        revealEls.forEach(function (el) { revealObs.observe(el); });
 
+        /* =========================================
+           Emerald Canvas Sequence Controller
+           ========================================= */
+        (function () {
+            const TOTAL_FRAMES = 240;
+            const FRAME_PATH = '4k Emerald Rotation Video_PNG/';
+            const IS_MOBILE = window.innerWidth <= 768;
+            const DPR = Math.min(window.devicePixelRatio || 1, IS_MOBILE ? 1.5 : 2);
+            const IMG_ASPECT = 16 / 9;  /* native aspect ratio of the 4K frames */
+            const LERP_SPEED = IS_MOBILE ? 0.2 : 0.12;
+            const BATCH_SIZE = 8;
 
+            const canvas = document.getElementById('emerald-canvas');
+            const ctx = canvas.getContext('2d', { alpha: false });
+            const wrapper = document.querySelector('.emerald-sequence');
+            const contentBlock = document.getElementById('hero-content-block');
+            const scrollPrompt = document.getElementById('scroll-prompt');
 
-  <footer>
-    &copy; <span id="yr"></span> ESS Academy. All rights reserved.
-  </footer>
+            if (!canvas || !wrapper) return;
 
-  <script>
-    /* Coach Tabs */
-    const bios = {
-      zac: {
-        img: 'coach zach_github.png',
-        bio: 'Coach Zachary is the founder of ESS Academy, licensed through FC Barcelona & U.S. Soccer pathways. With a proven track record of nurturing MLS Next athletes, he specializes in fusing technical detail with mental resilience.'
-      }
-    }
-    function showCoach(id, el) {
-      document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-      el.classList.add('active');
-      document.getElementById('coach-img').src = bios[id].img;
-      document.getElementById('coach-bio').textContent = bios[id].bio;
-    }
-    document.getElementById('yr').textContent = new Date().getFullYear();
-  </script>
+            const frames = {};
+            function padNum(n) { return String(n).padStart(5, '0'); }
+            let lastDrawnIndex = -1;
+
+            function sizeCanvas() {
+                const w = Math.min(window.innerWidth, 1920);
+                const h = Math.min(window.innerHeight, 1080);
+                canvas.width = Math.round(w * DPR);
+                canvas.height = Math.round(h * DPR);
+                lastDrawnIndex = -1;
+            }
+            sizeCanvas();
+
+            function loadFrame(idx) {
+                return new Promise(function (resolve) {
+                    const img = new Image();
+                    img.decoding = 'async';
+                    img.onload = function () { frames[idx] = img; resolve(); };
+                    img.onerror = function () { resolve(); };
+                    img.src = FRAME_PATH + padNum(idx + 1) + '.png';
+                });
+            }
+
+            async function loadBatch(indices) {
+                for (let i = 0; i < indices.length; i += BATCH_SIZE) {
+                    await Promise.all(indices.slice(i, i + BATCH_SIZE).map(loadFrame));
+                }
+            }
+
+            const priorityIndices = [], restIndices = [];
+            for (let i = 0; i < TOTAL_FRAMES; i++) {
+                if (i % 4 === 0) priorityIndices.push(i);
+                else restIndices.push(i);
+            }
+
+            let firstBatchReady = false;
+            loadBatch(priorityIndices).then(function () {
+                firstBatchReady = true;
+                drawFrame(0);
+                contentBlock.style.transition = 'opacity 1.5s cubic-bezier(0.2,0.8,0.2,1), transform 1.5s cubic-bezier(0.2,0.8,0.2,1)';
+                void contentBlock.offsetWidth;
+                contentBlock.style.opacity = '1';
+                contentBlock.style.transform = 'translateY(0)';
+                loadBatch(restIndices);
+            });
+
+            function drawFrame(origIndex) {
+                if (origIndex === lastDrawnIndex) return;
+                let img = frames[origIndex];
+                if (!img) {
+                    for (let d = 1; d < 5; d++) {
+                        if (frames[origIndex - d]) { img = frames[origIndex - d]; break; }
+                        if (frames[origIndex + d]) { img = frames[origIndex + d]; break; }
+                    }
+                }
+                if (!img) return;
+                ctx.fillStyle = '#050505';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                /* Cover-fit: preserve aspect ratio, center crop */
+                var cw = canvas.width, ch = canvas.height;
+                var srcAspect = img.naturalWidth / img.naturalHeight;
+                var dw, dh, dx, dy;
+                if (cw / ch > srcAspect) {
+                    dw = cw; dh = cw / srcAspect;
+                } else {
+                    dh = ch; dw = ch * srcAspect;
+                }
+                dx = (cw - dw) / 2;
+                dy = (ch - dh) / 2;
+                ctx.drawImage(img, dx, dy, dw, dh);
+                lastDrawnIndex = origIndex;
+            }
+
+            window.addEventListener('resize', function () { setTimeout(function () { sizeCanvas(); if (lastDrawnIndex >= 0) { var idx = lastDrawnIndex; lastDrawnIndex = -1; drawFrame(idx); } }, 150); });
+
+            let targetProgress = 0, smoothProgress = 0, scrolling = false, loopRunning = false, lastP = -1;
+
+            function readScroll() {
+                const rect = wrapper.getBoundingClientRect();
+                const scrollable = wrapper.offsetHeight - window.innerHeight;
+                if (scrollable <= 0) return;
+                targetProgress = Math.max(0, Math.min(1, -rect.top / scrollable));
+                scrolling = true;
+                if (!loopRunning) { loopRunning = true; requestAnimationFrame(tick); }
+            }
+
+            window.addEventListener('scroll', readScroll, { passive: true });
+
+            function updateVisuals(p) {
+                if (firstBatchReady) {
+                    drawFrame(Math.max(0, Math.min(TOTAL_FRAMES - 1, Math.floor(p * (TOTAL_FRAMES - 1)))));
+                }
+                if (Math.abs(p - lastP) < 0.001) return;
+                lastP = p;
+
+                if (p > 0.05) {
+                    const titleOp = Math.max(0, 1 - ((p - 0.05) / 0.35));
+                    contentBlock.style.opacity = titleOp;
+                    contentBlock.style.transform = 'translateY(' + (-(p * 150)) + 'px)';
+                    scrollPrompt.style.opacity = titleOp;
+                } else {
+                    contentBlock.style.opacity = 1;
+                    contentBlock.style.transform = 'translateY(0)';
+                    scrollPrompt.style.opacity = 0.7;
+                }
+
+                if (p > 0.85) {
+                    canvas.style.opacity = Math.max(0, (1 - p) / 0.15) * 0.85;
+                } else {
+                    canvas.style.opacity = 0.85;
+                }
+            }
+
+            function tick() {
+                smoothProgress += (targetProgress - smoothProgress) * LERP_SPEED;
+                if (Math.abs(smoothProgress - targetProgress) < 0.0003 && !scrolling) {
+                    smoothProgress = targetProgress;
+                    updateVisuals(smoothProgress);
+                    loopRunning = false;
+                    return;
+                }
+                scrolling = false;
+                updateVisuals(smoothProgress);
+                requestAnimationFrame(tick);
+            }
+
+            if (!firstBatchReady) {
+                contentBlock.style.opacity = '0';
+                contentBlock.style.transform = 'translateY(30px)';
+            }
+            readScroll();
+        })();
+    </script>
 </body>
+
 </html>
