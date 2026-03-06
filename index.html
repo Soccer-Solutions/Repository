@@ -832,6 +832,9 @@
             }
         }
     </style>
+    <link rel="preload" as="image" href="4k Emerald Rotation Video_PNG/00001.png" fetchpriority="high">
+    <link rel="preload" as="image" href="4k Emerald Rotation Video_PNG/00002.png">
+    <link rel="preload" as="image" href="4k Emerald Rotation Video_PNG/00003.png">
 </head>
 
 <body>
@@ -843,7 +846,8 @@
     <!-- Hero Scroll Sequence -->
     <div class="emerald-sequence" id="top">
         <div class="emerald-sticky" id="emerald-scroll">
-            <canvas id="emerald-canvas"></canvas>
+            <canvas id="emerald-canvas"
+                style="background-image: url('4k Emerald Rotation Video_PNG/00001.png'); background-size: cover; background-position: center;"></canvas>
             <div class="firefly-container" id="firefly-container"></div>
             <div class="hero-overlay"></div>
 
@@ -1093,7 +1097,7 @@
             const DPR = Math.min(window.devicePixelRatio || 1, IS_MOBILE ? 1.5 : 2);
             const IMG_ASPECT = 16 / 9;  /* native aspect ratio of the 4K frames */
             const LERP_SPEED = IS_MOBILE ? 0.2 : 0.12;
-            const BATCH_SIZE = 8;
+            const BATCH_SIZE = 12;
 
             const canvas = document.getElementById('emerald-canvas');
             const ctx = canvas.getContext('2d', { alpha: false });
@@ -1106,6 +1110,7 @@
             const frames = {};
             function padNum(n) { return String(n).padStart(5, '0'); }
             let lastDrawnIndex = -1;
+            let firstBatchReady = false;
 
             function sizeCanvas() {
                 const w = Math.min(window.innerWidth, 1920);
@@ -1120,7 +1125,19 @@
                 return new Promise(function (resolve) {
                     const img = new Image();
                     img.decoding = 'async';
-                    img.onload = function () { frames[idx] = img; resolve(); };
+                    img.onload = function () {
+                        frames[idx] = img;
+                        /* Paint the emerald the instant frame 0 lands — no waiting */
+                        if (idx === 0 && !firstBatchReady) {
+                            firstBatchReady = true;
+                            drawFrame(0);
+                            contentBlock.style.transition = 'opacity 1.2s cubic-bezier(0.2,0.8,0.2,1), transform 1.2s cubic-bezier(0.2,0.8,0.2,1)';
+                            void contentBlock.offsetWidth;
+                            contentBlock.style.opacity = '1';
+                            contentBlock.style.transform = 'translateY(0)';
+                        }
+                        resolve();
+                    };
                     img.onerror = function () { resolve(); };
                     img.src = FRAME_PATH + padNum(idx + 1) + '.png';
                 });
@@ -1132,20 +1149,24 @@
                 }
             }
 
+            /* Build index lists — frame 0 is handled first, then every-4th, then the rest */
             const priorityIndices = [], restIndices = [];
-            for (let i = 0; i < TOTAL_FRAMES; i++) {
+            for (let i = 1; i < TOTAL_FRAMES; i++) {
                 if (i % 4 === 0) priorityIndices.push(i);
                 else restIndices.push(i);
             }
 
-            let firstBatchReady = false;
-            loadBatch(priorityIndices).then(function () {
-                firstBatchReady = true;
-                drawFrame(0);
-                contentBlock.style.transition = 'opacity 1.5s cubic-bezier(0.2,0.8,0.2,1), transform 1.5s cubic-bezier(0.2,0.8,0.2,1)';
-                void contentBlock.offsetWidth;
-                contentBlock.style.opacity = '1';
-                contentBlock.style.transform = 'translateY(0)';
+            /* 1. Frame 0 — fires the instant one image is decoded */
+            loadFrame(0);
+
+            /* 2. Quick-start: frames 1-11 so early scroll feels smooth immediately */
+            const quickStart = [];
+            for (let i = 1; i <= 11; i++) quickStart.push(i);
+            loadBatch(quickStart).then(function () {
+                /* 3. Sparse priority frames across the full timeline */
+                return loadBatch(priorityIndices);
+            }).then(function () {
+                /* 4. Fill in every remaining frame */
                 loadBatch(restIndices);
             });
 
