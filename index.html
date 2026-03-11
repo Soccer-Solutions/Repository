@@ -1087,8 +1087,8 @@
         revealEls.forEach(function (el) { revealObs.observe(el); });
 
         /* =========================================
-           Emerald Video Scroll Controller — v4
-           MP4 currentTime scrubbing
+           Emerald Video Scroll Controller — v5
+           MP4 currentTime scrubbing (seek-primed)
            ========================================= */
         (function () {
             const video = document.getElementById('emerald-video');
@@ -1101,27 +1101,57 @@
             const IS_MOBILE = window.innerWidth <= 768;
             const LERP_SPEED = IS_MOBILE ? 0.18 : 0.10;
 
-            /* Ensure video is paused — we control playback via currentTime */
-            video.pause();
-
             let firstReady = false;
+            let seekUnlocked = false;
 
-            /* Show hero content as soon as video is seekable */
+            /* Prime the video decoder so currentTime seeks actually work.
+               Browsers (especially mobile) silently ignore currentTime on a
+               video that has never been played. play→pause unlocks seeking. */
+            function primeAndSeek(targetTime) {
+                if (seekUnlocked) {
+                    video.currentTime = targetTime;
+                    return;
+                }
+                var p = video.play();
+                if (p && p.then) {
+                    p.then(function () {
+                        video.pause();
+                        seekUnlocked = true;
+                        video.currentTime = targetTime;
+                    }).catch(function () {
+                        seekUnlocked = true;
+                        video.currentTime = targetTime;
+                    });
+                } else {
+                    video.pause();
+                    seekUnlocked = true;
+                    video.currentTime = targetTime;
+                }
+            }
+
+            /* Show hero content as soon as video metadata is available */
             function onReady() {
                 if (firstReady) return;
                 firstReady = true;
-                video.currentTime = 0;
+
+                /* Prime the decoder immediately so scroll seeks work */
+                primeAndSeek(0);
+
                 contentBlock.style.transition = 'opacity 1.2s cubic-bezier(0.2,0.8,0.2,1), transform 1.2s cubic-bezier(0.2,0.8,0.2,1)';
                 void contentBlock.offsetWidth;
                 contentBlock.style.opacity = '1';
                 contentBlock.style.transform = 'translateY(0)';
             }
 
-            /* Fire on loadedmetadata OR loadeddata — whichever comes first */
-            video.addEventListener('loadedmetadata', onReady);
-            video.addEventListener('loadeddata', onReady);
-            /* Fallback: 1 s after script runs if already cached */
-            if (video.readyState >= 2) onReady();
+            /* Broadest possible event coverage for cross-browser / mobile readiness */
+            ['loadedmetadata', 'loadeddata', 'canplay', 'canplaythrough'].forEach(function (ev) {
+                video.addEventListener(ev, onReady, { once: true });
+            });
+            /* If already buffered (e.g. cached) — fire synchronously */
+            if (video.readyState >= 1) onReady();
+
+            /* Force metadata load in case the browser is lazy */
+            video.load();
 
             /* --- Scroll / animation loop --- */
             let targetProgress = 0, smoothProgress = 0;
@@ -1138,9 +1168,13 @@
             window.addEventListener('scroll', readScroll, { passive: true });
 
             function updateVisuals(p) {
-                /* Scrub video — this is the only line replacing the entire canvas pipeline */
                 if (firstReady && video.duration) {
-                    video.currentTime = p * video.duration;
+                    if (seekUnlocked) {
+                        video.currentTime = p * video.duration;
+                    } else {
+                        /* Decoder not primed yet — trigger it again on first scroll */
+                        primeAndSeek(p * video.duration);
+                    }
                 }
 
                 if (Math.abs(p - lastP) < 0.001) return;
@@ -1159,11 +1193,9 @@
                 }
 
                 /* Video fade-out at bottom of sequence */
-                if (p > 0.85) {
-                    video.style.opacity = Math.max(0, (1 - p) / 0.15) * 0.85;
-                } else {
-                    video.style.opacity = 0.85;
-                }
+                video.style.opacity = p > 0.85
+                    ? String(Math.max(0, (1 - p) / 0.15) * 0.85)
+                    : '0.85';
             }
 
             function tick() {
@@ -1178,10 +1210,6 @@
                 updateVisuals(smoothProgress);
                 requestAnimationFrame(tick);
             }
-
-            window.addEventListener('resize', function () {
-                setTimeout(function () { /* No canvas sizing needed for video */ }, 150);
-            });
 
             contentBlock.style.opacity = '0';
             contentBlock.style.transform = 'translateY(30px)';
