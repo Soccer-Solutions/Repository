@@ -1097,8 +1097,6 @@
             const DPR = Math.min(window.devicePixelRatio || 1, IS_MOBILE ? 1.5 : 2);
             const IMG_ASPECT = 16 / 9;  /* native aspect ratio of the 4K frames */
             const LERP_SPEED = IS_MOBILE ? 0.2 : 0.12;
-            const BATCH_SIZE = 12;
-
             const canvas = document.getElementById('emerald-canvas');
             const ctx = canvas.getContext('2d', { alpha: false });
             const wrapper = document.querySelector('.emerald-sequence');
@@ -1122,59 +1120,35 @@
             sizeCanvas();
 
             function loadFrame(idx) {
-                return new Promise(function (resolve) {
-                    const img = new Image();
-                    img.decoding = 'async';
-                    img.onload = function () {
-                        frames[idx] = img;
-                        /* Paint the emerald the instant frame 0 lands — no waiting */
-                        if (idx === 0 && !firstBatchReady) {
-                            firstBatchReady = true;
-                            drawFrame(0);
-                            contentBlock.style.transition = 'opacity 1.2s cubic-bezier(0.2,0.8,0.2,1), transform 1.2s cubic-bezier(0.2,0.8,0.2,1)';
-                            void contentBlock.offsetWidth;
-                            contentBlock.style.opacity = '1';
-                            contentBlock.style.transform = 'translateY(0)';
-                        }
-                        resolve();
-                    };
-                    img.onerror = function () { resolve(); };
-                    img.src = FRAME_PATH + padNum(idx + 1) + '.png';
-                });
+                const img = new Image();
+                img.decoding = 'async';
+                img.onload = function () {
+                    frames[idx] = img;
+                    /* Paint the emerald the instant frame 0 lands — no waiting for any batch */
+                    if (idx === 0 && !firstBatchReady) {
+                        firstBatchReady = true;
+                        drawFrame(0);
+                        contentBlock.style.transition = 'opacity 1.2s cubic-bezier(0.2,0.8,0.2,1), transform 1.2s cubic-bezier(0.2,0.8,0.2,1)';
+                        void contentBlock.offsetWidth;
+                        contentBlock.style.opacity = '1';
+                        contentBlock.style.transform = 'translateY(0)';
+                    }
+                };
+                img.src = FRAME_PATH + padNum(idx + 1) + '.png';
             }
 
-            async function loadBatch(indices) {
-                for (let i = 0; i < indices.length; i += BATCH_SIZE) {
-                    await Promise.all(indices.slice(i, i + BATCH_SIZE).map(loadFrame));
-                }
+            /* Fire ALL 240 requests simultaneously — browser connection-pools them (6/host).
+               No sequential waves means every frame is in-flight from the very start,
+               so by the time the user scrolls deep the frames are already cached. */
+            for (let i = 0; i < TOTAL_FRAMES; i++) {
+                loadFrame(i);
             }
-
-            /* Build index lists — frame 0 is handled first, then every-4th, then the rest */
-            const priorityIndices = [], restIndices = [];
-            for (let i = 1; i < TOTAL_FRAMES; i++) {
-                if (i % 4 === 0) priorityIndices.push(i);
-                else restIndices.push(i);
-            }
-
-            /* 1. Frame 0 — fires the instant one image is decoded */
-            loadFrame(0);
-
-            /* 2. Quick-start: frames 1-11 so early scroll feels smooth immediately */
-            const quickStart = [];
-            for (let i = 1; i <= 11; i++) quickStart.push(i);
-            loadBatch(quickStart).then(function () {
-                /* 3. Sparse priority frames across the full timeline */
-                return loadBatch(priorityIndices);
-            }).then(function () {
-                /* 4. Fill in every remaining frame */
-                loadBatch(restIndices);
-            });
 
             function drawFrame(origIndex) {
                 if (origIndex === lastDrawnIndex) return;
                 let img = frames[origIndex];
                 if (!img) {
-                    for (let d = 1; d < 5; d++) {
+                    for (let d = 1; d < 12; d++) {
                         if (frames[origIndex - d]) { img = frames[origIndex - d]; break; }
                         if (frames[origIndex + d]) { img = frames[origIndex + d]; break; }
                     }
