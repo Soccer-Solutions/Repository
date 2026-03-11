@@ -833,7 +833,7 @@
             }
         }
     </style>
-    <link rel="preload" as="video" href="4k Emerald Rotation Video.mp4" type="video/mp4">
+    <link rel="preload" as="video" href="1080p emerald video.mp4" type="video/mp4">
 </head>
 
 <body>
@@ -845,7 +845,7 @@
     <!-- Hero Scroll Sequence -->
     <div class="emerald-sequence" id="top">
         <div class="emerald-sticky" id="emerald-scroll">
-            <video id="emerald-video" src="4k Emerald Rotation Video.mp4" muted playsinline preload="auto"
+            <video id="emerald-video" src="1080p emerald video.mp4" muted playsinline preload="auto"
                 poster="4k Emerald Rotation Video_PNG/00001.png" style="display:block;"></video>
             <div class="firefly-container" id="firefly-container"></div>
             <div class="hero-overlay"></div>
@@ -1087,133 +1087,82 @@
         revealEls.forEach(function (el) { revealObs.observe(el); });
 
         /* =========================================
-           Emerald Video Scroll Controller — v5
-           MP4 currentTime scrubbing (seek-primed)
+           Emerald Video Scroll Controller — v6
            ========================================= */
         (function () {
-            const video = document.getElementById('emerald-video');
-            const wrapper = document.querySelector('.emerald-sequence');
-            const contentBlock = document.getElementById('hero-content-block');
-            const scrollPrompt = document.getElementById('scroll-prompt');
+            var video = document.getElementById('emerald-video');
+            var wrapper = document.querySelector('.emerald-sequence');
+            var contentBlock = document.getElementById('hero-content-block');
+            var scrollPrompt = document.getElementById('scroll-prompt');
 
             if (!video || !wrapper) return;
 
-            const IS_MOBILE = window.innerWidth <= 768;
-            const LERP_SPEED = IS_MOBILE ? 0.18 : 0.10;
+            var IS_MOBILE = window.innerWidth <= 768;
+            var LERP = IS_MOBILE ? 0.18 : 0.10;
+            var duration = 0;
+            var targetP = 0;
+            var smoothP = 0;
+            var rafId = null;
+            var lastP = -1;
 
-            let firstReady = false;
-            let seekUnlocked = false;
-
-            /* Prime the video decoder so currentTime seeks actually work.
-               Browsers (especially mobile) silently ignore currentTime on a
-               video that has never been played. play→pause unlocks seeking. */
-            function primeAndSeek(targetTime) {
-                if (seekUnlocked) {
-                    video.currentTime = targetTime;
-                    return;
-                }
-                var p = video.play();
-                if (p && p.then) {
-                    p.then(function () {
-                        video.pause();
-                        seekUnlocked = true;
-                        video.currentTime = targetTime;
-                    }).catch(function () {
-                        seekUnlocked = true;
-                        video.currentTime = targetTime;
-                    });
-                } else {
-                    video.pause();
-                    seekUnlocked = true;
-                    video.currentTime = targetTime;
-                }
-            }
-
-            /* Show hero content as soon as video metadata is available */
-            function onReady() {
-                if (firstReady) return;
-                firstReady = true;
-
-                /* Prime the decoder immediately so scroll seeks work */
-                primeAndSeek(0);
-
-                contentBlock.style.transition = 'opacity 1.2s cubic-bezier(0.2,0.8,0.2,1), transform 1.2s cubic-bezier(0.2,0.8,0.2,1)';
+            /* 1. Metadata ready → store duration, show frame 0, reveal hero */
+            function onMeta() {
+                duration = video.duration || 0;
+                video.currentTime = 0;
+                contentBlock.style.transition = 'opacity 1.2s cubic-bezier(.2,.8,.2,1), transform 1.2s cubic-bezier(.2,.8,.2,1)';
                 void contentBlock.offsetWidth;
                 contentBlock.style.opacity = '1';
                 contentBlock.style.transform = 'translateY(0)';
             }
 
-            /* Broadest possible event coverage for cross-browser / mobile readiness */
-            ['loadedmetadata', 'loadeddata', 'canplay', 'canplaythrough'].forEach(function (ev) {
-                video.addEventListener(ev, onReady, { once: true });
-            });
-            /* If already buffered (e.g. cached) — fire synchronously */
-            if (video.readyState >= 1) onReady();
+            if (video.readyState >= 1) {
+                onMeta();
+            } else {
+                video.addEventListener('loadedmetadata', onMeta, { once: true });
+            }
 
-            /* Force metadata load in case the browser is lazy */
-            video.load();
-
-            /* --- Scroll / animation loop --- */
-            let targetProgress = 0, smoothProgress = 0;
-            let scrolling = false, loopRunning = false, lastP = -1;
-
-            function readScroll() {
-                const rect = wrapper.getBoundingClientRect();
-                const scrollable = wrapper.offsetHeight - window.innerHeight;
+            /* 2. Scroll → update target progress */
+            function onScroll() {
+                var rect = wrapper.getBoundingClientRect();
+                var scrollable = wrapper.offsetHeight - window.innerHeight;
                 if (scrollable <= 0) return;
-                targetProgress = Math.max(0, Math.min(1, -rect.top / scrollable));
-                scrolling = true;
-                if (!loopRunning) { loopRunning = true; requestAnimationFrame(tick); }
+                targetP = Math.max(0, Math.min(1, -rect.top / scrollable));
+                if (!rafId) rafId = requestAnimationFrame(tick);
             }
-            window.addEventListener('scroll', readScroll, { passive: true });
+            window.addEventListener('scroll', onScroll, { passive: true });
 
-            function updateVisuals(p) {
-                if (firstReady && video.duration) {
-                    if (seekUnlocked) {
-                        video.currentTime = p * video.duration;
-                    } else {
-                        /* Decoder not primed yet — trigger it again on first scroll */
-                        primeAndSeek(p * video.duration);
-                    }
-                }
-
-                if (Math.abs(p - lastP) < 0.001) return;
-                lastP = p;
-
-                /* Text / hero fade */
-                if (p > 0.05) {
-                    const titleOp = Math.max(0, 1 - ((p - 0.05) / 0.35));
-                    contentBlock.style.opacity = titleOp;
-                    contentBlock.style.transform = 'translateY(' + (-(p * 150)) + 'px)';
-                    scrollPrompt.style.opacity = titleOp;
-                } else {
-                    contentBlock.style.opacity = 1;
-                    contentBlock.style.transform = 'translateY(0)';
-                    scrollPrompt.style.opacity = 0.7;
-                }
-
-                /* Video fade-out at bottom of sequence */
-                video.style.opacity = p > 0.85
-                    ? String(Math.max(0, (1 - p) / 0.15) * 0.85)
-                    : '0.85';
-            }
-
+            /* 3. LERP animation tick — scrubs video + updates all UI */
             function tick() {
-                smoothProgress += (targetProgress - smoothProgress) * LERP_SPEED;
-                if (Math.abs(smoothProgress - targetProgress) < 0.0003 && !scrolling) {
-                    smoothProgress = targetProgress;
-                    updateVisuals(smoothProgress);
-                    loopRunning = false;
-                    return;
+                smoothP += (targetP - smoothP) * LERP;
+
+                if (duration) video.currentTime = smoothP * duration;
+
+                if (Math.abs(smoothP - lastP) >= 0.001) {
+                    lastP = smoothP;
+
+                    if (smoothP > 0.05) {
+                        var op = Math.max(0, 1 - ((smoothP - 0.05) / 0.35));
+                        contentBlock.style.opacity = op;
+                        contentBlock.style.transform = 'translateY(' + (-(smoothP * 150)) + 'px)';
+                        scrollPrompt.style.opacity = op;
+                    } else {
+                        contentBlock.style.opacity = '1';
+                        contentBlock.style.transform = 'translateY(0)';
+                        scrollPrompt.style.opacity = '0.7';
+                    }
+
+                    video.style.opacity = smoothP > 0.85
+                        ? String(Math.max(0, (1 - smoothP) / 0.15) * 0.85)
+                        : '0.85';
                 }
-                scrolling = false;
-                updateVisuals(smoothProgress);
-                requestAnimationFrame(tick);
+
+                rafId = Math.abs(smoothP - targetP) > 0.0001
+                    ? requestAnimationFrame(tick)
+                    : null;
             }
 
             contentBlock.style.opacity = '0';
             contentBlock.style.transform = 'translateY(30px)';
-            readScroll();
         })();
 
         /* ----- FIREFLIES (CSS-only, GPU-composited) ----- */
