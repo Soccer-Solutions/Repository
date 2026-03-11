@@ -845,7 +845,7 @@
     <!-- Hero Scroll Sequence -->
     <div class="emerald-sequence" id="top">
         <div class="emerald-sticky" id="emerald-scroll">
-            <video id="emerald-video" src="1080p emerald video.mp4" muted playsinline preload="auto"
+            <video id="emerald-video" src="1080p emerald video.mp4" muted playsinline autoplay preload="auto"
                 poster="4k Emerald Rotation Video_PNG/00001.png" style="display:block;"></video>
             <div class="firefly-container" id="firefly-container"></div>
             <div class="hero-overlay"></div>
@@ -1098,16 +1098,21 @@
             if (!video || !wrapper) return;
 
             var IS_MOBILE = window.innerWidth <= 768;
-            var LERP = IS_MOBILE ? 0.18 : 0.10;
+            /* Snappy LERP: tight enough to feel enterprise-grade, gentle enough to stay smooth */
+            var LERP = IS_MOBILE ? 0.25 : 0.30;
             var duration = 0;
             var targetP = 0;
             var smoothP = 0;
             var rafId = null;
             var lastP = -1;
+            var metaFired = false;
 
-            /* 1. Metadata ready → store duration, show frame 0, reveal hero */
+            /* 1. Metadata ready → pause any autoplay, store duration, reveal hero */
             function onMeta() {
+                if (metaFired) return;
+                metaFired = true;
                 duration = video.duration || 0;
+                video.pause();          /* stop any autoplay immediately */
                 video.currentTime = 0;
                 contentBlock.style.transition = 'opacity 1.2s cubic-bezier(.2,.8,.2,1), transform 1.2s cubic-bezier(.2,.8,.2,1)';
                 void contentBlock.offsetWidth;
@@ -1115,11 +1120,10 @@
                 contentBlock.style.transform = 'translateY(0)';
             }
 
-            if (video.readyState >= 1) {
-                onMeta();
-            } else {
-                video.addEventListener('loadedmetadata', onMeta, { once: true });
-            }
+            /* loadedmetadata covers desktop; canplay covers iOS Safari with autoplay */
+            video.addEventListener('loadedmetadata', onMeta, { once: true });
+            video.addEventListener('canplay', onMeta, { once: true });
+            if (video.readyState >= 1) onMeta();
 
             /* 2. Scroll → update target progress */
             function onScroll() {
