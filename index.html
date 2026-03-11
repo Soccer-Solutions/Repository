@@ -1098,11 +1098,14 @@
             if (!video || !wrapper) return;
 
             var IS_MOBILE = window.innerWidth <= 768;
-            /* Snappy LERP: tight enough to feel enterprise-grade, gentle enough to stay smooth */
-            var LERP = IS_MOBILE ? 0.25 : 0.30;
+            /* Desktop: snappy during scroll + momentum coast on release.
+               Mobile: slower LERP only — touch OS already provides natural inertia. */
+            var LERP = IS_MOBILE ? 0.25 : 0.32;
+            var FRICTION = 0.86;          /* momentum decay per frame (desktop only) */
             var duration = 0;
             var targetP = 0;
             var smoothP = 0;
+            var velocity = 0;             /* scroll momentum (desktop only) */
             var rafId = null;
             var lastP = -1;
             var metaFired = false;
@@ -1125,18 +1128,28 @@
             video.addEventListener('canplay', onMeta, { once: true });
             if (video.readyState >= 1) onMeta();
 
-            /* 2. Scroll → update target progress */
+            /* 2. Scroll → update target + capture velocity (desktop) */
             function onScroll() {
                 var rect = wrapper.getBoundingClientRect();
                 var scrollable = wrapper.offsetHeight - window.innerHeight;
                 if (scrollable <= 0) return;
-                targetP = Math.max(0, Math.min(1, -rect.top / scrollable));
+                var newP = Math.max(0, Math.min(1, -rect.top / scrollable));
+                if (!IS_MOBILE) velocity = newP - targetP;   /* measure live scroll delta */
+                targetP = newP;
                 if (!rafId) rafId = requestAnimationFrame(tick);
             }
             window.addEventListener('scroll', onScroll, { passive: true });
 
-            /* 3. LERP animation tick — scrubs video + updates all UI */
+            /* 3. LERP + momentum tick */
             function tick() {
+                /* Desktop momentum: carry velocity forward with friction after scroll stops */
+                if (!IS_MOBILE && Math.abs(velocity) > 0.00008) {
+                    velocity *= FRICTION;
+                    targetP = Math.max(0, Math.min(1, targetP + velocity));
+                } else {
+                    velocity = 0;
+                }
+
                 smoothP += (targetP - smoothP) * LERP;
 
                 if (duration) video.currentTime = smoothP * duration;
@@ -1160,9 +1173,8 @@
                         : '0.85';
                 }
 
-                rafId = Math.abs(smoothP - targetP) > 0.0001
-                    ? requestAnimationFrame(tick)
-                    : null;
+                var settling = Math.abs(smoothP - targetP) > 0.0001 || Math.abs(velocity) > 0.00008;
+                rafId = settling ? requestAnimationFrame(tick) : null;
             }
 
             contentBlock.style.opacity = '0';
