@@ -1106,6 +1106,7 @@
             var smoothP = 0;
             var rafId = null;
             var lastP = -1;
+            var lastVideoTime = -1; /* Tracks last sent time to prevent decoder choke */
             var metaFired = false;
 
             /* 1. Metadata ready → pause any autoplay, store duration, reveal hero */
@@ -1115,6 +1116,7 @@
                 duration = video.duration || 0;
                 video.pause();          /* stop any autoplay immediately */
                 video.currentTime = 0;
+                lastVideoTime = 0;
                 contentBlock.style.transition = 'opacity 1.2s cubic-bezier(.2,.8,.2,1), transform 1.2s cubic-bezier(.2,.8,.2,1)';
                 void contentBlock.offsetWidth;
                 contentBlock.style.opacity = '1';
@@ -1140,7 +1142,15 @@
             function tick() {
                 smoothP += (targetP - smoothP) * LERP;
 
-                if (duration) video.currentTime = smoothP * duration;
+                if (duration) {
+                    var targetTime = smoothP * duration;
+                    /* Throttle hardware decoder updates to ~30fps equivalent on desktop 
+                       to prevent micro-seek choking, while math keeps running at 60fps */
+                    if (IS_MOBILE || Math.abs(targetTime - lastVideoTime) > 0.033 || Math.abs(smoothP - targetP) < 0.001) {
+                        video.currentTime = targetTime;
+                        lastVideoTime = targetTime;
+                    }
+                }
 
                 if (Math.abs(smoothP - lastP) >= 0.001) {
                     lastP = smoothP;
