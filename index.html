@@ -210,15 +210,12 @@
             justify-content: center;
         }
 
-        #emerald-video {
+        #emerald-canvas {
             position: absolute;
             inset: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* BRUTAL HONESTY FIX: Removed 'filter: contrast(...) brightness(...)'. 
-               Bake these into the video file itself. CSS filters on a playing 1080p video 
-               are a massive GPU compositing bottleneck on desktop. */
             mix-blend-mode: screen;
             opacity: 0.85;
             z-index: -1;
@@ -838,7 +835,9 @@
             }
         }
     </style>
-    <link rel="preload" as="video" href="1080p emerald video.mp4" type="video/mp4">
+    <link rel="preload" as="image" href="4k Emerald Rotation Video_PNG/00001.png">
+    <link rel="preload" as="image" href="4k Emerald Rotation Video_PNG/00002.png">
+    <link rel="preload" as="image" href="4k Emerald Rotation Video_PNG/00003.png">
 </head>
 
 <body>
@@ -850,8 +849,7 @@
     <!-- Hero Scroll Sequence -->
     <div class="emerald-sequence" id="top">
         <div class="emerald-sticky" id="emerald-scroll">
-            <video id="emerald-video" src="1080p emerald video.mp4" muted playsinline autoplay preload="auto"
-                poster="4k Emerald Rotation Video_PNG/00001.png" style="display:block;"></video>
+            <canvas id="emerald-canvas"></canvas>
             <div class="firefly-container" id="firefly-container"></div>
             <div class="hero-overlay"></div>
 
@@ -1092,48 +1090,70 @@
         revealEls.forEach(function (el) { revealObs.observe(el); });
 
         /* =========================================
-           Emerald Video Scroll Controller — v6
+           Emerald Canvas Image Sequence Controller
            ========================================= */
         (function () {
-            var video = document.getElementById('emerald-video');
+            var canvas = document.getElementById('emerald-canvas');
             var wrapper = document.querySelector('.emerald-sequence');
             var contentBlock = document.getElementById('hero-content-block');
             var scrollPrompt = document.getElementById('scroll-prompt');
 
-            if (!video || !wrapper) return;
+            if (!canvas || !wrapper) return;
+
+            var ctx = canvas.getContext('2d', { alpha: false }); // Optimization for opaque/screen blending
+            canvas.width = 1920; 
+            canvas.height = 1080;
 
             var IS_MOBILE = window.innerWidth <= 768;
-            /* Desktop: Deep LERP (0.08) creates a natural 'carousel' coasting effect.
-               Mobile: Snappy LERP (0.25) because touch OS provides its own inertia. */
             var LERP = IS_MOBILE ? 0.25 : 0.08;
-            var duration = 0;
             var targetP = 0;
             var smoothP = 0;
             var rafId = null;
             var lastP = -1;
-            var lastVideoTime = -1; /* Tracks last sent time to prevent decoder choke */
-            var metaFired = false;
+            
+            var frameCount = 240;
+            var images = [];
+            var firstFrameLoaded = false;
+            
+            function pad(n, width, z) {
+                z = z || '0';
+                n = n + '';
+                return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+            }
 
-            /* 1. Metadata ready → pause any autoplay, store duration, reveal hero */
-            function onMeta() {
-                if (metaFired) return;
-                metaFired = true;
-                duration = video.duration || 0;
-                video.pause();          /* stop any autoplay immediately */
-                video.currentTime = 0;
-                lastVideoTime = 0;
+            function revealHero() {
                 contentBlock.style.transition = 'opacity 1.2s cubic-bezier(.2,.8,.2,1), transform 1.2s cubic-bezier(.2,.8,.2,1)';
                 void contentBlock.offsetWidth;
                 contentBlock.style.opacity = '1';
                 contentBlock.style.transform = 'translateY(0)';
             }
 
-            /* loadedmetadata covers desktop; canplay covers iOS Safari with autoplay */
-            video.addEventListener('loadedmetadata', onMeta, { once: true });
-            video.addEventListener('canplay', onMeta, { once: true });
-            if (video.readyState >= 1) onMeta();
+            function renderFrame(index) {
+                if (images[index] && images[index].complete) {
+                    ctx.drawImage(images[index], 0, 0, canvas.width, canvas.height);
+                }
+            }
 
-            /* 2. Scroll → update target */
+            // High-priority load for first frame
+            var firstImg = new Image();
+            firstImg.src = "4k Emerald Rotation Video_PNG/00001.png";
+            firstImg.onload = function() {
+                firstFrameLoaded = true;
+                // Pre-fill canvas with black to ensure alpha: false optimization looks right
+                ctx.fillStyle = "#000000";
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                renderFrame(0);
+                revealHero();
+                
+                // Then begin loading the rest lazily to avoid blocking main thread at start
+                for(let i = 2; i <= frameCount; i++) {
+                    let img = new Image();
+                    img.src = "4k Emerald Rotation Video_PNG/" + pad(i, 5) + ".png";
+                    images[i - 1] = img;
+                }
+            };
+            images[0] = firstImg;
+
             function onScroll() {
                 var rect = wrapper.getBoundingClientRect();
                 var scrollable = wrapper.offsetHeight - window.innerHeight;
@@ -1143,23 +1163,15 @@
             }
             window.addEventListener('scroll', onScroll, { passive: true });
 
-            /* 3. LERP animation tick */
             function tick() {
                 smoothP += (targetP - smoothP) * LERP;
-
-                if (duration) {
-                    var targetTime = smoothP * duration;
-                    /* BRUTAL HONESTY FIX: 
-                       Never spam `currentTime` if the decoder is currently seeking! 
-                       This creates an abort-queue pileup in Chrome/Edge that drops frames.
-                       We let the video hardware dictate the throttle. */
-                    if (!video.seeking) {
-                        video.currentTime = targetTime;
-                    }
-                }
-
-                if (Math.abs(smoothP - lastP) >= 0.001) {
+                
+                var targetFrame = Math.floor(smoothP * (frameCount - 1));
+                
+                if (Math.abs(smoothP - lastP) >= 0.0001) {
                     lastP = smoothP;
+                    
+                    renderFrame(targetFrame);
 
                     if (smoothP > 0.05) {
                         var op = Math.max(0, 1 - ((smoothP - 0.05) / 0.35));
@@ -1172,7 +1184,7 @@
                         scrollPrompt.style.opacity = '0.7';
                     }
 
-                    video.style.opacity = smoothP > 0.85
+                    canvas.style.opacity = smoothP > 0.85
                         ? String(Math.max(0, (1 - smoothP) / 0.15) * 0.85)
                         : '0.85';
                 }
