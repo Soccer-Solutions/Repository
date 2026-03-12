@@ -216,10 +216,15 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            filter: contrast(1.1) brightness(1.2);
+            /* BRUTAL HONESTY FIX: Removed 'filter: contrast(...) brightness(...)'. 
+               Bake these into the video file itself. CSS filters on a playing 1080p video 
+               are a massive GPU compositing bottleneck on desktop. */
             mix-blend-mode: screen;
             opacity: 0.85;
             z-index: -1;
+            transform: translateZ(0);
+            /* Force discrete GPU layer */
+            will-change: opacity;
         }
 
         .firefly-container {
@@ -1144,11 +1149,12 @@
 
                 if (duration) {
                     var targetTime = smoothP * duration;
-                    /* Throttle hardware decoder updates to ~30fps equivalent on desktop 
-                       to prevent micro-seek choking, while math keeps running at 60fps */
-                    if (IS_MOBILE || Math.abs(targetTime - lastVideoTime) > 0.033 || Math.abs(smoothP - targetP) < 0.001) {
+                    /* BRUTAL HONESTY FIX: 
+                       Never spam `currentTime` if the decoder is currently seeking! 
+                       This creates an abort-queue pileup in Chrome/Edge that drops frames.
+                       We let the video hardware dictate the throttle. */
+                    if (!video.seeking) {
                         video.currentTime = targetTime;
-                        lastVideoTime = targetTime;
                     }
                 }
 
