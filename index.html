@@ -210,7 +210,7 @@
             justify-content: center;
         }
 
-        #emerald-canvas {
+        #emerald-canvas, #emerald-video {
             position: absolute;
             inset: 0;
             width: 100%;
@@ -222,6 +222,7 @@
             transform: translateZ(0);
             /* Force discrete GPU layer */
             will-change: opacity;
+            display: none; /* Controlled by JS based on viewport */
         }
 
         .firefly-container {
@@ -835,9 +836,10 @@
             }
         }
     </style>
-    <link rel="preload" as="image" href="4k Emerald Rotation Video_PNG/00001.png">
-    <link rel="preload" as="image" href="4k Emerald Rotation Video_PNG/00002.png">
-    <link rel="preload" as="image" href="4k Emerald Rotation Video_PNG/00003.png">
+    <link rel="preload" as="image" href="4k Emerald Rotation Video_PNG/00001.png" media="(min-width: 769px)">
+    <link rel="preload" as="image" href="4k Emerald Rotation Video_PNG/00002.png" media="(min-width: 769px)">
+    <link rel="preload" as="image" href="4k Emerald Rotation Video_PNG/00003.png" media="(min-width: 769px)">
+    <link rel="preload" as="video" href="1080p emerald video.mp4" type="video/mp4" media="(max-width: 768px)">
 </head>
 
 <body>
@@ -849,6 +851,7 @@
     <!-- Hero Scroll Sequence -->
     <div class="emerald-sequence" id="top">
         <div class="emerald-sticky" id="emerald-scroll">
+            <video id="emerald-video" src="1080p emerald video.mp4" muted playsinline autoplay preload="auto" poster="4k Emerald Rotation Video_PNG/00001.png"></video>
             <canvas id="emerald-canvas"></canvas>
             <div class="firefly-container" id="firefly-container"></div>
             <div class="hero-overlay"></div>
@@ -1090,35 +1093,140 @@
         revealEls.forEach(function (el) { revealObs.observe(el); });
 
         /* =========================================
-           Emerald Canvas Image Sequence Controller
+           Hybrid Emerald Scroll Controller
+           Desktop: High-performance Canvas Image Sequence
+           Mobile: Snappy Video Scrubbing (Native Decoder)
            ========================================= */
         (function () {
+            var video = document.getElementById('emerald-video');
             var canvas = document.getElementById('emerald-canvas');
             var wrapper = document.querySelector('.emerald-sequence');
             var contentBlock = document.getElementById('hero-content-block');
             var scrollPrompt = document.getElementById('scroll-prompt');
 
-            if (!canvas || !wrapper) return;
-
-            var ctx = canvas.getContext('2d', { alpha: false }); // Optimization for opaque/screen blending
-            canvas.width = 1920; 
-            canvas.height = 1080;
+            if (!canvas || !video || !wrapper) return;
 
             var IS_MOBILE = window.innerWidth <= 768;
-            var LERP = IS_MOBILE ? 0.25 : 0.08;
+            var rafId = null;
             var targetP = 0;
             var smoothP = 0;
-            var rafId = null;
             var lastP = -1;
-            
-            var frameCount = 240;
-            var images = [];
-            var firstFrameLoaded = false;
-            
-            function pad(n, width, z) {
-                z = z || '0';
-                n = n + '';
-                return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+
+            if (IS_MOBILE) {
+                // --- MOBILE: VIDEO SCRUBBER ---
+                video.style.display = 'block';
+                var LERP = 0.25; // Snappy LERP for touch OS inertia
+                var duration = 0;
+                var metaFired = false;
+
+                function onVideoMeta() {
+                    if (metaFired) return;
+                    metaFired = true;
+                    duration = video.duration || 0;
+                    video.pause();
+                    video.currentTime = 0;
+                    revealHero();
+                }
+
+                video.addEventListener('loadedmetadata', onVideoMeta, { once: true });
+                video.addEventListener('canplay', onVideoMeta, { once: true });
+                if (video.readyState >= 1) onVideoMeta();
+
+                window.addEventListener('scroll', onScroll, { passive: true });
+
+                function tickMobile() {
+                    smoothP += (targetP - smoothP) * LERP;
+
+                    if (duration) {
+                        var targetTime = smoothP * duration;
+                        if (!video.seeking) {
+                            video.currentTime = targetTime;
+                        }
+                    }
+
+                    if (Math.abs(smoothP - lastP) >= 0.001) {
+                        lastP = smoothP;
+                        updateHeroUI(smoothP, video);
+                    }
+
+                    rafId = Math.abs(smoothP - targetP) > 0.0001 ? requestAnimationFrame(tickMobile) : null;
+                }
+
+                function onScroll() {
+                    updateTargetP();
+                    if (!rafId) rafId = requestAnimationFrame(tickMobile);
+                }
+
+            } else {
+                // --- DESKTOP: CANVAS IMAGE SEQUENCE ---
+                canvas.style.display = 'block';
+                var LERP = 0.08; // Deep LERP to create carousel coasting
+                var ctx = canvas.getContext('2d', { alpha: false });
+                canvas.width = 1920; 
+                canvas.height = 1080;
+                
+                var frameCount = 240;
+                var images = [];
+                var firstFrameLoaded = false;
+                
+                function pad(n, width, z) {
+                    z = z || '0';
+                    n = n + '';
+                    return n.length >= width ? n : new Array(width - n.length + 1).join(z) + n;
+                }
+
+                function renderFrame(index) {
+                    if (images[index] && images[index].complete) {
+                        ctx.drawImage(images[index], 0, 0, canvas.width, canvas.height);
+                    }
+                }
+
+                // High-priority load for first frame
+                var firstImg = new Image();
+                firstImg.src = "4k Emerald Rotation Video_PNG/00001.png";
+                firstImg.onload = function() {
+                    firstFrameLoaded = true;
+                    ctx.fillStyle = "#000000";
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    renderFrame(0);
+                    revealHero();
+                    
+                    // Lazy load the rest
+                    for(let i = 2; i <= frameCount; i++) {
+                        let img = new Image();
+                        img.src = "4k Emerald Rotation Video_PNG/" + pad(i, 5) + ".png";
+                        images[i - 1] = img;
+                    }
+                };
+                images[0] = firstImg;
+
+                window.addEventListener('scroll', onScrollDesktop, { passive: true });
+
+                function tickDesktop() {
+                    smoothP += (targetP - smoothP) * LERP;
+                    var targetFrame = Math.floor(smoothP * (frameCount - 1));
+                    
+                    if (Math.abs(smoothP - lastP) >= 0.0001) {
+                        lastP = smoothP;
+                        renderFrame(targetFrame);
+                        updateHeroUI(smoothP, canvas);
+                    }
+
+                    rafId = Math.abs(smoothP - targetP) > 0.0001 ? requestAnimationFrame(tickDesktop) : null;
+                }
+
+                function onScrollDesktop() {
+                    updateTargetP();
+                    if (!rafId) rafId = requestAnimationFrame(tickDesktop);
+                }
+            }
+
+            // --- SHARED UTILS ---
+            function updateTargetP() {
+                var rect = wrapper.getBoundingClientRect();
+                var scrollable = wrapper.offsetHeight - window.innerHeight;
+                if (scrollable <= 0) return;
+                targetP = Math.max(0, Math.min(1, -rect.top / scrollable));
             }
 
             function revealHero() {
@@ -1128,72 +1236,24 @@
                 contentBlock.style.transform = 'translateY(0)';
             }
 
-            function renderFrame(index) {
-                if (images[index] && images[index].complete) {
-                    ctx.drawImage(images[index], 0, 0, canvas.width, canvas.height);
-                }
-            }
-
-            // High-priority load for first frame
-            var firstImg = new Image();
-            firstImg.src = "4k Emerald Rotation Video_PNG/00001.png";
-            firstImg.onload = function() {
-                firstFrameLoaded = true;
-                // Pre-fill canvas with black to ensure alpha: false optimization looks right
-                ctx.fillStyle = "#000000";
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                renderFrame(0);
-                revealHero();
-                
-                // Then begin loading the rest lazily to avoid blocking main thread at start
-                for(let i = 2; i <= frameCount; i++) {
-                    let img = new Image();
-                    img.src = "4k Emerald Rotation Video_PNG/" + pad(i, 5) + ".png";
-                    images[i - 1] = img;
-                }
-            };
-            images[0] = firstImg;
-
-            function onScroll() {
-                var rect = wrapper.getBoundingClientRect();
-                var scrollable = wrapper.offsetHeight - window.innerHeight;
-                if (scrollable <= 0) return;
-                targetP = Math.max(0, Math.min(1, -rect.top / scrollable));
-                if (!rafId) rafId = requestAnimationFrame(tick);
-            }
-            window.addEventListener('scroll', onScroll, { passive: true });
-
-            function tick() {
-                smoothP += (targetP - smoothP) * LERP;
-                
-                var targetFrame = Math.floor(smoothP * (frameCount - 1));
-                
-                if (Math.abs(smoothP - lastP) >= 0.0001) {
-                    lastP = smoothP;
-                    
-                    renderFrame(targetFrame);
-
-                    if (smoothP > 0.05) {
-                        var op = Math.max(0, 1 - ((smoothP - 0.05) / 0.35));
-                        contentBlock.style.opacity = op;
-                        contentBlock.style.transform = 'translateY(' + (-(smoothP * 150)) + 'px)';
-                        scrollPrompt.style.opacity = op;
-                    } else {
-                        contentBlock.style.opacity = '1';
-                        contentBlock.style.transform = 'translateY(0)';
-                        scrollPrompt.style.opacity = '0.7';
-                    }
-
-                    canvas.style.opacity = smoothP > 0.85
-                        ? String(Math.max(0, (1 - smoothP) / 0.15) * 0.85)
-                        : '0.85';
+            function updateHeroUI(sp, activeElement) {
+                if (sp > 0.05) {
+                    var op = Math.max(0, 1 - ((sp - 0.05) / 0.35));
+                    contentBlock.style.opacity = op;
+                    contentBlock.style.transform = 'translateY(' + (-(sp * 150)) + 'px)';
+                    scrollPrompt.style.opacity = op;
+                } else {
+                    contentBlock.style.opacity = '1';
+                    contentBlock.style.transform = 'translateY(0)';
+                    scrollPrompt.style.opacity = '0.7';
                 }
 
-                rafId = Math.abs(smoothP - targetP) > 0.0001
-                    ? requestAnimationFrame(tick)
-                    : null;
+                activeElement.style.opacity = sp > 0.85
+                    ? String(Math.max(0, (1 - sp) / 0.15) * 0.85)
+                    : '0.85';
             }
 
+            // Set initial state
             contentBlock.style.opacity = '0';
             contentBlock.style.transform = 'translateY(30px)';
         })();
