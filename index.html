@@ -1,3 +1,5 @@
+hybrid last used version
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -194,7 +196,7 @@
         /* ===== EMERALD SCROLL SEQUENCE ===== */
         .emerald-sequence {
             position: relative;
-            height: 250vh;
+            height: 400vh;
             background: var(--bg-dark);
             z-index: 2;
         }
@@ -822,47 +824,6 @@
             }
         }
 
-        /* ===== LOADING GATE ===== */
-        #loading-gate {
-            position: fixed;
-            inset: 0;
-            background: var(--bg-dark);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-light);
-            transition: opacity 0.8s ease, visibility 0.8s ease;
-        }
-        .loading-content {
-            text-align: center;
-            width: 80%;
-            max-width: 300px;
-        }
-        .loading-content p {
-            font-family: var(--font-display);
-            letter-spacing: 2px;
-            margin-bottom: 2rem;
-            font-size: 1.2rem;
-        }
-        .loading-bar {
-            width: 100%;
-            height: 2px;
-            background: rgba(255, 255, 255, 0.1);
-            position: relative;
-            overflow: hidden;
-            border-radius: 2px;
-        }
-        #loading-progress {
-            position: absolute;
-            left: 0;
-            top: 0;
-            height: 100%;
-            width: 0%;
-            background: var(--accent);
-            transition: width 0.1s linear;
-        }
-        
         @media (max-width: 480px) {
             .hero-title {
                 font-size: clamp(1.8rem, 8.5vw, 2.8rem);
@@ -877,22 +838,13 @@
             }
         }
     </style>
-    <link rel="preload" as="image" href="Emerald Rotation Video_PNG/00001.png" media="(min-width: 769px)">
-    <link rel="preload" as="image" href="Emerald Rotation Video_PNG/00002.png" media="(min-width: 769px)">
-    <link rel="preload" as="image" href="Emerald Rotation Video_PNG/00003.png" media="(min-width: 769px)">
+    <link rel="preload" as="image" href="4k Emerald Rotation Video_PNG/00001.png" media="(min-width: 769px)">
+    <link rel="preload" as="image" href="4k Emerald Rotation Video_PNG/00002.png" media="(min-width: 769px)">
+    <link rel="preload" as="image" href="4k Emerald Rotation Video_PNG/00003.png" media="(min-width: 769px)">
     <link rel="preload" as="video" href="1080p emerald video.mp4" type="video/mp4" media="(max-width: 768px)">
 </head>
 
 <body>
-    <div id="loading-gate">
-        <div class="loading-content">
-            <p>Initializing...</p>
-            <div class="loading-bar">
-                <div id="loading-progress"></div>
-            </div>
-        </div>
-    </div>
-
     <header id="main-header">
         <div class="logo">ESSA</div>
         <a href="https://dot.cards/ess_academy" target="_blank" class="menu-btn">Menu</a>
@@ -901,7 +853,7 @@
     <!-- Hero Scroll Sequence -->
     <div class="emerald-sequence" id="top">
         <div class="emerald-sticky" id="emerald-scroll">
-            <video id="emerald-video" src="1080p emerald video.mp4" muted playsinline autoplay preload="auto" poster="Emerald Rotation Video_PNG/00001.png"></video>
+            <video id="emerald-video" src="1080p emerald video.mp4" muted playsinline autoplay preload="auto" poster="4k Emerald Rotation Video_PNG/00001.png"></video>
             <canvas id="emerald-canvas"></canvas>
             <div class="firefly-container" id="firefly-container"></div>
             <div class="hero-overlay"></div>
@@ -1163,10 +1115,6 @@
             var lastP = -1;
 
             if (IS_MOBILE) {
-                // Hide loading gate instantly on mobile
-                var lg = document.getElementById('loading-gate');
-                if(lg) lg.style.display = 'none';
-
                 // --- MOBILE: VIDEO SCRUBBER ---
                 video.style.display = 'block';
                 var LERP = 0.25; // Snappy LERP for touch OS inertia
@@ -1219,9 +1167,9 @@
                 canvas.width = 1920; 
                 canvas.height = 1080;
                 
-                var frameCount = 192; // Non-4K folder has 192 frames
+                var frameCount = 240;
                 var images = [];
-                var loadedCount = 0;
+                var firstFrameLoaded = false;
                 
                 function pad(n, width, z) {
                     z = z || '0';
@@ -1235,47 +1183,24 @@
                     }
                 }
 
-                document.body.style.overflow = 'hidden'; // Lock scroll to prevent missing frames
-                window.scrollTo(0, 0);
-
-                var loadingGate = document.getElementById('loading-gate');
-                var loadingProgress = document.getElementById('loading-progress');
-
-                for(let i = 1; i <= frameCount; i++) {
-                    let img = new Image();
-                    img.src = "Emerald Rotation Video_PNG/" + pad(i, 5) + ".png";
-                    img.onload = function() {
-                        loadedCount++;
-                        if (loadingProgress) {
-                            loadingProgress.style.width = (loadedCount / frameCount) * 100 + '%';
-                        }
-                        if (loadedCount === frameCount) {
-                            ctx.fillStyle = "#000000";
-                            ctx.fillRect(0, 0, canvas.width, canvas.height);
-                            renderFrame(0);
-                            
-                            setTimeout(function() {
-                                if (loadingGate) {
-                                    loadingGate.style.opacity = '0';
-                                    loadingGate.style.visibility = 'hidden';
-                                }
-                                document.body.style.overflow = ''; // Unlock scroll
-                                revealHero();
-                                window.addEventListener('scroll', onScrollDesktop, { passive: true });
-                            }, 400); // 400ms grace period to appreciate the 100% bar
-                        }
-                    };
-                    img.onerror = function() {
-                        loadedCount++;
-                        if (loadedCount === frameCount) {
-                            document.body.style.overflow = '';
-                            if (loadingGate) loadingGate.style.display = 'none';
-                            revealHero();
-                            window.addEventListener('scroll', onScrollDesktop, { passive: true });
-                        }
+                // High-priority load for first frame
+                var firstImg = new Image();
+                firstImg.src = "4k Emerald Rotation Video_PNG/00001.png";
+                firstImg.onload = function() {
+                    firstFrameLoaded = true;
+                    ctx.fillStyle = "#000000";
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    renderFrame(0);
+                    revealHero();
+                    
+                    // Lazy load the rest
+                    for(let i = 2; i <= frameCount; i++) {
+                        let img = new Image();
+                        img.src = "4k Emerald Rotation Video_PNG/" + pad(i, 5) + ".png";
+                        images[i - 1] = img;
                     }
-                    images[i - 1] = img;
-                }
+                };
+                images[0] = firstImg;
 
                 window.addEventListener('scroll', onScrollDesktop, { passive: true });
 
