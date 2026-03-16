@@ -73,7 +73,9 @@
             padding: 0;
         }
 
-        /* scroll-behavior: smooth removed globally — it fights sticky scroll sequences on mobile */
+        html {
+            scroll-behavior: smooth;
+        }
 
         body {
             font-family: var(--font-body);
@@ -872,7 +874,7 @@
     <!-- Hero Scroll Sequence -->
     <div class="emerald-sequence" id="top">
         <div class="emerald-sticky" id="emerald-scroll">
-            <video id="emerald-video" src="1080p emerald video.mp4" muted playsinline preload="auto" poster="WebP_Sequence/00001.webp"></video>
+            <video id="emerald-video" src="1080p emerald video.mp4" muted playsinline autoplay preload="auto" poster="WebP_Sequence/00001.webp"></video>
             <canvas id="emerald-canvas"></canvas>
             <div class="firefly-container" id="firefly-container"></div>
             <div class="hero-overlay"></div>
@@ -905,7 +907,7 @@
                 <h2 class="section-title reveal reveal-delay-1">Get to Know ESS Academy</h2>
                 <p class="section-text reveal reveal-delay-2" style="margin-top:1.5rem;">Welcome to <strong>ESS
                         Academy</strong>, a soccer development academy that believes everyone carries a hidden
-                    '<strong>emerald</strong>' &#8212; their unrealized potential &#8212; and is dedicated to helping
+                    '<strong>emerald</strong>' -their unrealized potential- and is dedicated to helping
                     them unearth it and realize their potential through <em>measurable, data-driven growth.</em> The
                     academy cultivates a culture that marries <em>technical mastery</em> with <em>mental
                         resilience</em>, ensuring players not only survive but excel under elite&#8209;level stress. ESS
@@ -968,7 +970,7 @@
             <h2 class="section-title reveal reveal-delay-1">Academy Framework</h2>
             <div class="framework-grid" style="margin-top:2.5rem;">
                 <div class="glass-card reveal reveal-delay-1">
-                    <h4>Data-Driven Technical Development</h4>
+                    <h4>Data-Driven Development</h4>
                     <p>ESS Academy operates on a measurable, evidence-based training model powered by its
                         <strong>proprietary data system.</strong> Sessions target quantifiable standards aligned
                         directly
@@ -1137,8 +1139,17 @@
                 video.style.display = 'block';
                 canvas.style.display = 'none';
                 
+                var LERP = 0.25; 
                 var duration = 0;
                 var metaFired = false;
+
+                fetch('1080p emerald video.mp4')
+                    .then(response => response.blob())
+                    .then(blob => {
+                        var blobUrl = URL.createObjectURL(blob);
+                        video.src = blobUrl;
+                    })
+                    .catch(err => console.log('Video fetch fallback'));
 
                 function onVideoMeta() {
                     if (metaFired) return;
@@ -1155,17 +1166,27 @@
 
                 window.addEventListener('scroll', onScrollMobile, { passive: true });
 
-                function onScrollMobile() {
-                    updateTargetP();
-                    // Direct scrub — no LERP on mobile to prevent jumps when reversing scroll direction
-                    smoothP = targetP;
-                    if (duration && !video.seeking) {
-                        video.currentTime = targetP * duration;
+                function tickMobile() {
+                    smoothP += (targetP - smoothP) * LERP;
+
+                    if (duration) {
+                        var targetTime = smoothP * duration;
+                        if (!video.seeking) {
+                            video.currentTime = targetTime;
+                        }
                     }
+
                     if (Math.abs(smoothP - lastP) >= 0.001) {
                         lastP = smoothP;
                         updateHeroUI(smoothP, video);
                     }
+
+                    rafId = Math.abs(smoothP - targetP) > 0.0001 ? requestAnimationFrame(tickMobile) : null;
+                }
+
+                function onScrollMobile() {
+                    updateTargetP();
+                    if (!rafId) rafId = requestAnimationFrame(tickMobile);
                 }
 
             } else {
